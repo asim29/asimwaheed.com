@@ -1,43 +1,131 @@
-# Astro Starter Kit: Minimal
+# asimwaheed.com
 
-```sh
-npm create astro@latest -- --template minimal
+Personal website for Asim Waheed.
+
+Built with Astro, using a static-first, zero-JS-by-default approach.
+The site is intentionally minimal at this stage and will evolve incrementally.
+
+---
+
+## Philosophy
+
+- Static-first
+  No client-side JavaScript unless explicitly justified.
+
+- Document-based routing
+  Each route maps to a real HTML document.
+
+- Layout-driven structure
+  Global HTML structure lives in a single base layout.
+
+- Content as data
+  Page content will eventually live in Markdown or structured data, not hard-coded templates.
+
+---
+
+## Tech Stack
+
+- Astro
+- Node.js + npm
+- Cloudflare Pages (deployment)
+
+---
+
+## Local Development (macOS)
+
+### 1. Install prerequisites
+
+This project assumes macOS and Homebrew.
+
+```zsh
+brew install node
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Verify installation:
 
-## 🚀 Project Structure
+```zsh
+node -v
+npm -v
+```
+---
 
-Inside of your Astro project, you'll see the following folders and files:
+### 2. Install dependencies
+
+From the project root:
+
+```zsh
+npm install
+```
+---
+
+### 3. Run the dev server
+
+```zsh
+npm run dev
+```
+Astro will start a local development server at:
+
+```zsh
+http://localhost:4321
+```
+---
+
+## Project Structure (current)
 
 ```text
 /
 ├── public/
 ├── src/
+│   ├── layouts/
+│   │   └── BaseLayout.astro
 │   └── pages/
 │       └── index.astro
-└── package.json
+├── astro.config.mjs
+├── package.json
+├── package-lock.json
+└── README.md
+```
+---
+
+## Key Files
+
+```text
+src/layouts/BaseLayout.astro
+- Defines the canonical HTML document structure
+- Owns <html>, <head>, and <body>
+
+src/pages/index.astro
+- Homepage content
+- Uses BaseLayout
+```
+---
+
+## Commands
+
+Start local dev server
+```zsh
+npm run dev
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Build static site to dist/
+```zsh
+npm run build
+```
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Preview production build locally
+```zsh
+npm run preview
+```
 
-Any static assets, like images, can be placed in the `public/` directory.
+---
 
-## 🧞 Commands
+## Status
 
-All commands are run from the root of the project, from a terminal:
+Early bootstrap phase.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Current state:
+- Astro initialized
+- Layout abstraction in place
+- Single homepage route
+- No styling
+- No client-side JavaScript
