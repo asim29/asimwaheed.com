@@ -1,0 +1,56 @@
+:root {
+  /* ─────────────────────────────
+     Raw palette — Neutrals
+     ───────────────────────────── */
+  --color-mist-grey: #F7F8FA;
+  --color-deep-slate: #1E293B;
+  --color-ash: #D1D5DB;
+  --color-charcoal: #374151;
+
+  /* ─────────────────────────────
+     Raw palette — Accents
+     ───────────────────────────── */
+  --color-midnight-blue-fill: #2646A6;
+  --color-midnight-blue-text: #1E326F;
+
+  --color-teal-fill: #13837F;
+  --color-teal-text: #0F6865;
+
+  --color-amber-fill: #F2B441;
+  --color-amber-text: #6C511D;
+
+  --color-raspberry-fill: #C94964;
+  --color-raspberry-text: #96364B;
+
+  /* ─────────────────────────────
+     Raw palette — Semantic
+     ───────────────────────────── */
+  --color-emerald: #1A6342;
+  --color-crimson: #AD2C2C;
+
+  /* ─────────────────────────────
+     Semantic roles — Site usage
+     ───────────────────────────── */
+  --color-bg-default: var(--color-mist-grey);
+  --color-bg-muted: var(--color-ash);
+
+  --color-text-primary: var(--color-deep-slate);
+  --color-text-secondary: var(--color-charcoal);
+  --color-text-muted: var(--color-charcoal);
+
+  /* Abstract accent slots */
+  --color-accent-1: var(--color-midnight-blue-fill);
+  --color-accent-1-text: var(--color-midnight-blue-text);
+
+  --color-accent-2: var(--color-teal-fill);
+  --color-accent-2-text: var(--color-teal-text);
+
+  --color-accent-3: var(--color-amber-fill);
+  --color-accent-3-text: var(--color-amber-text);
+
+  --color-accent-4: var(--color-raspberry-fill);
+  --color-accent-4-text: var(--color-raspberry-text);
+
+  --color-status-success: var(--color-emerald);
+  --color-status-error: var(--color-crimson);
+}
