@@ -1,7 +1,10 @@
 ---
 import "../styles/main.css";
 
-const { title = "Asim Waheed" } = Astro.props;
+const {
+  title = "Asim Waheed",
+  description = "Personal site of Asim Waheed.",
+} = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -10,9 +13,24 @@ const { title = "Asim Waheed" } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
+    <meta name="description" content={description} />
   </head>
 
   <body>
-    <slot />
+    <slot name="header" />
+
+    <main class="container">
+      <slot />
+    </main>
+
+    <slot name="footer" />
   </body>
 </html>
+
+<style>
+  .container {
+    width: min(100% - (2 * var(--space-6)), var(--max-width-lg));
+    margin-inline: auto;
+    padding-block: var(--space-7);
+  }
+</style>
