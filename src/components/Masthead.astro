@@ -1,16 +1,62 @@
 ---
-import signature from "../assets/AsimSignature.png";
-
 const {
+  name = "Asim Waheed",
   href = "/",
-  alt = "Asim Waheed",
+  email = "asim.waheed29@gmail.com",
+  github = "https://www.github.com/asim29",
+  scholar = "https://scholar.google.com/citations?user=PgPuHyQAAAAJ",
+  linkedin = "https://www.linkedin.com/in/asim-waheed97/",
 } = Astro.props;
+
+import IconLink from "./IconLink.astro";
+
+import MailIcon from "../icons/mail.svg";
+import GitHubIcon from "../icons/github.svg";
+import LinkedInIcon from "../icons/linkedin.svg";
+import ScholarIcon from "../icons/graduation-cap.svg";
+
+import { CONTACT_ARIA_LABELS } from "../constants/aria";
+
 ---
 
-<a href={href} style="display:inline-block; margin-bottom: var(--space-5);">
-  <img
-    src={signature.src}
-    alt={alt}
-    style="height:4rem; width:auto; display:block; opacity:0.85;"
-  />
-</a>
+<header class="masthead">
+  <!-- Left: identity -->
+  <div class="masthead-left">
+    <a href={href} class="masthead-name">
+      {name}
+    </a>
+  </div>
+
+  <!-- Center: reserved for future document links -->
+  <nav class="masthead-center" aria-label="Primary">
+    <!-- intentionally empty -->
+  </nav>
+
+  <!-- Right: contact / external links -->
+  <div class="masthead-right">
+    <IconLink
+      href={`mailto:${email}`}
+      ariaLabel={CONTACT_ARIA_LABELS.email}
+      icon={MailIcon}
+      external={false}
+    />
+
+    <IconLink
+      href={github}
+      ariaLabel={CONTACT_ARIA_LABELS.github}
+      icon={GitHubIcon}
+    />
+
+    <IconLink
+      href={scholar}
+      ariaLabel={CONTACT_ARIA_LABELS.scholar}
+      icon={ScholarIcon}
+    />
+
+    <IconLink
+      href={linkedin}
+      ariaLabel={CONTACT_ARIA_LABELS.linkedin}
+      icon={LinkedInIcon}
+    />
+  </div>
+</header>

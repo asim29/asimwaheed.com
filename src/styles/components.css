@@ -1,0 +1,48 @@
+/* Component styles
+   ----------------
+   This file contains styles that are scoped to individual components.
+   Keep these semantic (component/region names), not generic utilities.
+*/
+
+/* Masthead */
+.masthead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-6);
+}
+
+/* Left / Center / Right regions */
+.masthead-left {
+  flex: 0 0 auto;
+}
+
+.masthead-center {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+}
+
+/* Right-side icon links */
+.masthead-right {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+/* Name link */
+.masthead-name {
+  text-decoration: none;
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-4xl);
+  line-height: var(--line-height-tight);
+}
+
+/* Icon links (shared between Masthead & Footer) */
+.icon-link {
+  color: var(--color-text-secondary);
+  display: inline-flex;
+  align-items: center;
+}

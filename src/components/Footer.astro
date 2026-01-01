@@ -6,12 +6,14 @@ const {
   linkedin = "https://www.linkedin.com/in/asim-waheed97/",
 } = Astro.props;
 
-const iconColor = "var(--color-text-secondary)";
+import IconLink from "./IconLink.astro";
 
 import MailIcon from "../icons/mail.svg";
 import GitHubIcon from "../icons/github.svg";
 import LinkedInIcon from "../icons/linkedin.svg";
 import ScholarIcon from "../icons/graduation-cap.svg";
+
+import { CONTACT_ARIA_LABELS } from "../constants/aria";
 ---
 
 <footer style="margin-top: var(--space-8);">
@@ -22,44 +24,32 @@ import ScholarIcon from "../icons/graduation-cap.svg";
       align-items: center;
     "
   >
-    <a
+    <IconLink
       href={`mailto:${email}`}
-      aria-label="Email"
-      style={`color: ${iconColor};`}
-    >
-      <MailIcon width="24" height="24" />
-    </a>
+      ariaLabel={CONTACT_ARIA_LABELS.email}
+      icon={MailIcon}
+      external={false}
+    />
 
-    <a
+    <IconLink
       href={github}
-      target="_blank"
-      rel="noopener"
-      aria-label="GitHub"
-      style={`color: ${iconColor};`}
-    >
-      <GitHubIcon width="24" height="24" />
-    </a>
+      ariaLabel={CONTACT_ARIA_LABELS.github}
+      icon={GitHubIcon}
+    />
 
-    <a
+    <IconLink
       href={scholar}
-      target="_blank"
-      rel="noopener"
-      aria-label="Google Scholar"
-      style={`color: ${iconColor};`}
-    >
-      <ScholarIcon width="24" height="24" />
-    </a>
+      ariaLabel={CONTACT_ARIA_LABELS.scholar}
+      icon={ScholarIcon}
+    />
 
-    <a
+    <IconLink
       href={linkedin}
-      target="_blank"
-      rel="noopener"
-      aria-label="LinkedIn"
-      style={`color: ${iconColor};`}
-    >
-      <LinkedInIcon width="24" height="24" />
-    </a>
+      ariaLabel={CONTACT_ARIA_LABELS.linkedin}
+      icon={LinkedInIcon}
+    />
   </div>
+
   <p
     style="
       margin-top: var(--space-4);
@@ -69,5 +59,4 @@ import ScholarIcon from "../icons/graduation-cap.svg";
   >
     Last updated: January 2026 / Asim Waheed
   </p>
-
 </footer>
