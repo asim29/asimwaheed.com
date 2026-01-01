@@ -1,0 +1,63 @@
+---
+const {
+  email = "asim.waheed29@gmail.com",
+  github = "https://www.github.com/asim29",
+  scholar = "https://scholar.google.com/citations?user=PgPuHyQAAAAJ",
+  linkedin = "https://www.linkedin.com/in/asim-waheed97/",
+} = Astro.props;
+
+const iconColor = "var(--color-text-secondary)";
+
+import MailIcon from "../icons/mail.svg";
+import GitHubIcon from "../icons/github.svg";
+import LinkedInIcon from "../icons/linkedin.svg";
+import ScholarIcon from "../icons/graduation-cap.svg";
+---
+
+<footer style="margin-top: var(--space-8);">
+  <div
+    style="
+      display: flex;
+      gap: var(--space-4);
+      align-items: center;
+    "
+  >
+    <a
+      href={`mailto:${email}`}
+      aria-label="Email"
+      style={`color: ${iconColor};`}
+    >
+      <MailIcon width="24" height="24" />
+    </a>
+
+    <a
+      href={github}
+      target="_blank"
+      rel="noopener"
+      aria-label="GitHub"
+      style={`color: ${iconColor};`}
+    >
+      <GitHubIcon width="24" height="24" />
+    </a>
+
+    <a
+      href={scholar}
+      target="_blank"
+      rel="noopener"
+      aria-label="Google Scholar"
+      style={`color: ${iconColor};`}
+    >
+      <ScholarIcon width="24" height="24" />
+    </a>
+
+    <a
+      href={linkedin}
+      target="_blank"
+      rel="noopener"
+      aria-label="LinkedIn"
+      style={`color: ${iconColor};`}
+    >
+      <LinkedInIcon width="24" height="24" />
+    </a>
+  </div>
+</footer>

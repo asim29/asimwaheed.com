@@ -1,5 +1,6 @@
 ---
 import "../styles/main.css";
+import DocumentFooter from "../components/DocumentFooter.astro";
 
 const {
   title = "Asim Waheed",
@@ -19,6 +20,7 @@ const {
   <body>
     <main class="container">
       <slot />
+      <DocumentFooter />
     </main>
   </body>
 </html>
