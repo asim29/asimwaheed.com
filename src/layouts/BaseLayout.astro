@@ -1,6 +1,7 @@
 ---
 import "../styles/main.css";
-import DocumentFooter from "../components/DocumentFooter.astro";
+import Masthead from "../components/Masthead.astro";
+import Footer from "../components/Footer.astro";
 
 const {
   title = "Asim Waheed",
@@ -19,16 +20,13 @@ const {
 
   <body>
     <main class="container">
-      <slot />
-      <DocumentFooter />
+      <div class="content">
+        <Masthead />
+
+        <slot />
+
+        <Footer />
+      </div>
     </main>
   </body>
 </html>
-
-<style>
-  .container {
-    width: min(100% - (2 * var(--space-6)), var(--max-width-lg));
-    margin-inline: auto;
-    padding-block: var(--space-7);
-  }
-</style>

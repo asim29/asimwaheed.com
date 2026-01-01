@@ -1,0 +1,14 @@
+/* Layout primitives
+   Structural layout only (container + content)
+*/
+
+.container {
+  width: min(100% - (2 * var(--space-6)), var(--max-width-lg));
+  margin-inline: auto;
+  padding-block: var(--space-7);
+}
+
+.content {
+  max-width: var(--max-width-md);
+  margin-inline: auto;
+}
