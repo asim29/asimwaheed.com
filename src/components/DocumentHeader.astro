@@ -1,0 +1,16 @@
+---
+import signature from "../assets/AsimSignature.png";
+
+const {
+  href = "/",
+  alt = "Asim Waheed",
+} = Astro.props;
+---
+
+<a href={href} style="display:inline-block; margin-bottom: var(--space-5);">
+  <img
+    src={signature.src}
+    alt={alt}
+    style="height:1.5rem; width:auto; display:block; opacity:0.85;"
+  />
+</a>

@@ -79,6 +79,11 @@ small {
   color: var(--color-text-secondary);
 }
 
+.content {
+  max-width: var(--max-width-md);
+}
+
+
 /* ─────────────────────────────
    Links
    ───────────────────────────── */
