@@ -16,47 +16,46 @@ import LinkedInIcon from "../icons/linkedin.svg";
 import ScholarIcon from "../icons/graduation-cap.svg";
 
 import { CONTACT_ARIA_LABELS } from "../constants/aria";
-
 ---
 
 <header class="masthead">
-  <!-- Left: identity -->
-  <div class="masthead-left">
-    <a href={href} class="masthead-name">
-      {name}
-    </a>
+  <!-- Row 1: Identity + Icons -->
+  <div class="masthead-top">
+    <div class="masthead-left">
+      <a href={href} class="masthead-name">
+        {name}
+      </a>
+    </div>
+
+    <div class="masthead-right">
+      <IconLink
+        href={`mailto:${email}`}
+        ariaLabel={CONTACT_ARIA_LABELS.email}
+        icon={MailIcon}
+        external={false}
+      />
+      <IconLink
+        href={github}
+        ariaLabel={CONTACT_ARIA_LABELS.github}
+        icon={GitHubIcon}
+      />
+      <IconLink
+        href={scholar}
+        ariaLabel={CONTACT_ARIA_LABELS.scholar}
+        icon={ScholarIcon}
+      />
+      <IconLink
+        href={linkedin}
+        ariaLabel={CONTACT_ARIA_LABELS.linkedin}
+        icon={LinkedInIcon}
+      />
+    </div>
   </div>
 
-  <!-- Center: reserved for future document links -->
-  <nav class="masthead-center" aria-label="Primary">
-    <!-- intentionally empty -->
+  <!-- Row 2: Navigation -->
+  <nav class="masthead-nav" aria-label="Primary">
+    <a href="/about" class="nav-link">About</a>
+    <a href="/publications" class="nav-link">Publications</a>
+    <a href="/collaborate" class="nav-link">Collaborate</a>
   </nav>
-
-  <!-- Right: contact / external links -->
-  <div class="masthead-right">
-    <IconLink
-      href={`mailto:${email}`}
-      ariaLabel={CONTACT_ARIA_LABELS.email}
-      icon={MailIcon}
-      external={false}
-    />
-
-    <IconLink
-      href={github}
-      ariaLabel={CONTACT_ARIA_LABELS.github}
-      icon={GitHubIcon}
-    />
-
-    <IconLink
-      href={scholar}
-      ariaLabel={CONTACT_ARIA_LABELS.scholar}
-      icon={ScholarIcon}
-    />
-
-    <IconLink
-      href={linkedin}
-      ariaLabel={CONTACT_ARIA_LABELS.linkedin}
-      icon={LinkedInIcon}
-    />
-  </div>
 </header>
