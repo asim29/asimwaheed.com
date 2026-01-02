@@ -77,3 +77,30 @@
   display: inline-flex;
   align-items: center;
 }
+
+/* Clearfix so parent contains the float */
+.intro::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/* Desktop: photo floats right, text wraps */
+.intro-photo {
+  float: right;
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  margin-left: var(--space-6);
+  margin-bottom: var(--space-4);
+  display: block;
+}
+
+/* Mobile: photo on top */
+@media (max-width: 768px) {
+  .intro-photo {
+    float: none;
+    margin: 0 auto var(--space-4);
+  }
+}

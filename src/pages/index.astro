@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HomeContent from "../content/home.md";
+---
+
+<BaseLayout
+  title="Asim Waheed"
+  description="Research, writing, and work in progress."
+>
+  <div class="intro">
+    <img
+      src="/images/AsimPhoto.jpg"
+      alt="Portrait of Asim Waheed"
+      class="intro-photo"
+    />
+
+    <div class="intro-text">
+      <HomeContent />
+    </div>
+  </div>
+</BaseLayout>
