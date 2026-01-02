@@ -1,5 +1,16 @@
-// @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
+import remarkExternalLinks from "remark-external-links";
 
-// https://astro.build/config
-export default defineConfig({});
+export default defineConfig({
+  markdown: {
+    remarkPlugins: [
+      [
+        remarkExternalLinks,
+        {
+          target: "_blank",
+          rel: ["noopener", "noreferrer"],
+        },
+      ],
+    ],
+  },
+});
