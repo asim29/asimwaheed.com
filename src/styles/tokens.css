@@ -121,6 +121,12 @@
   --max-width-sm: 40rem;  /* ~640px */
   --max-width-md: 48rem;  /* ~768px */
   --max-width-lg: 64rem;  /* ~1024px */
-
-
+ 
+  /* ─────────────────────────────
+  Semantic roles — Borders / rules
+  ───────────────────────────── */
+  --color-border-subtle: var(--color-ash);        /* quiet dividers, timelines */
+  --color-border-default: var(--color-charcoal); /* standard rules, outlines */
+  --color-border-strong: var(--color-deep-slate);/* emphasis, section breaks */
+  
 }

@@ -1,0 +1,31 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+// Load all timeline entries
+const entries = await Astro.glob("../content/about/*.md");
+
+// Sort: newest → oldest
+const sortedEntries = entries.sort((a, b) => {
+  const aEnd = a.frontmatter.end === "present" ? Infinity : a.frontmatter.end;
+  const bEnd = b.frontmatter.end === "present" ? Infinity : b.frontmatter.end;
+  return bEnd - aEnd;
+});
+---
+
+<BaseLayout title="About" description="Background and trajectory">
+  <section class="timeline">
+    {sortedEntries.map((Entry) => (
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+
+        <div class="timeline-content">
+          <div class="timeline-dates">
+            {Entry.frontmatter.start} – {Entry.frontmatter.end}
+          </div>
+
+          <Entry.Content />
+        </div>
+      </div>
+    ))}
+  </section>
+</BaseLayout>

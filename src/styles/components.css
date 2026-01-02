@@ -104,3 +104,86 @@
     margin: 0 auto var(--space-4);
   }
 }
+
+/* ===== Timeline layout ===== */
+
+.timeline {
+  --timeline-gutter: var(--space-4); /* width of left column */
+  --timeline-axis: var(--space-1);   /* x-position of the spine */
+
+  margin-top: var(--space-6);
+  display: grid;
+  grid-template-columns: var(--timeline-gutter) 1fr;
+  row-gap: var(--space-6);
+  position: relative;
+}
+
+/* Vertical line (centered on axis, behind dots) */
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--timeline-axis) - 1px);
+  width: 2px;
+  background: var(--color-border-default);
+  z-index: 0;
+}
+
+/* Each entry */
+.timeline-item {
+  display: contents;
+}
+
+/* Dot */
+.timeline-marker {
+  grid-column: 1;
+  width: 8px;
+  height: 8px;
+  margin-top: 0.25rem;
+  border-radius: 50%;
+
+  background: var(--color-bg-default);           /* hollow center */
+  border: 2px solid var(--color-border-default); /* ring */
+
+  justify-self: start;
+  margin-left: calc(var(--timeline-axis) - 6px);
+
+  z-index: 1;
+}
+
+
+/* Content: dates + prose side-by-side */
+.timeline-content {
+  grid-column: 2;
+  max-width: var(--max-width-md);
+
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  column-gap: var(--space-5);
+  align-items: start;
+}
+
+/* Dates */
+.timeline-dates {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+/* Normalize markdown spacing */
+.timeline-content :global(p) {
+  margin: 0;
+}
+
+.timeline-content :global(p + p) {
+  margin-top: var(--space-3);
+}
+
+/* Mobile: stack dates above text */
+@media (max-width: 520px) {
+  .timeline-content {
+    grid-template-columns: 1fr;
+  }
+}
