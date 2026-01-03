@@ -4,7 +4,7 @@ export const SITE = {
   name: "Asim Waheed",
   homeHref: "/",
 
-  email: "asim.waheed29@gmail.com",
+  email: "contact@asimwaheed.com",
 
   github: "https://www.github.com/asim29",
   scholar: "https://scholar.google.com/citations?user=PgPuHyQAAAAJ",
