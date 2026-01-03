@@ -10,6 +10,8 @@ import ScholarIcon from "../icons/graduation-cap.svg";
 
 import { CONTACT_ARIA_LABELS } from "../constants/aria";
 import { SITE } from "../constants/site";
+
+const { pathname } = Astro.url;
 ---
 
 <header class="masthead">
@@ -51,9 +53,32 @@ import { SITE } from "../constants/site";
 
   <!-- Row 2: Navigation -->
   <nav class="masthead-nav" aria-label="Primary">
-    <a href="/" class="nav-link">Home</a>
-    <a href="/work" class="nav-link">Work</a>
-    <a href="/publications" class="nav-link">Publications</a>
-    <a href="/collaborate" class="nav-link">Collaborate</a>
+    <a
+      href="/"
+      class={`nav-link ${pathname === "/" ? "active" : ""}`}
+    >
+      Home
+    </a>
+
+    <a
+      href="/work"
+      class={`nav-link ${pathname === "/work" ? "active" : ""}`}
+    >
+      Work
+    </a>
+
+    <a
+      href="/publications"
+      class={`nav-link ${pathname === "/publications" ? "active" : ""}`}
+    >
+      Publications
+    </a>
+
+    <a
+      href="/collaborate"
+      class={`nav-link ${pathname === "/collaborate" ? "active" : ""}`}
+    >
+      Collaborate
+    </a>
   </nav>
 </header>
