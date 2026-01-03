@@ -37,7 +37,7 @@ h6 {
 
   font-weight: var(--font-weight-semibold);
   line-height: var(--line-height-tight);
-  color: var(--color-text-primary);
+  color: var(--color-text-secondary);
 }
 
 h1 {
@@ -50,7 +50,6 @@ h2 {
 
 h3 {
   font-size: var(--font-size-2xl);
-  color: var(--color-text-secondary);
   margin-bottom: var(--space-2);
 }
 

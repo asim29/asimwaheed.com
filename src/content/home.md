@@ -1,3 +1,5 @@
+### About me
+
 Hi, I'm __Asim__ (/ˈɑːsɪm/).
 I'm pursuing a PhD in Computer Science at the
 [University of Waterloo](https://cs.uwaterloo.ca/),
@@ -18,6 +20,3 @@ A __central theme__ of my work is standardization: building frameworks, tools, a
 Through this, I aim to bridge the gap between academic research and industry by turning fragmented insights into usable, well-defined systems.
 
 You can find a list of my __[publications here](/publications)__.
-
-### Contact
-I’m open to research collaborations, consulting, and related discussions. Reach out to [asim.waheed29@gmail.com](mailto:asim.waheed29@gmail.com).

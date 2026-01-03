@@ -31,7 +31,7 @@
   text-decoration: none;
   color: var(--color-text-primary);
   font-weight: var(--font-weight-semibold);
-  font-size: var(--font-size-4xl);
+  font-size: var(--font-size-3xl);
   line-height: var(--line-height-tight);
 }
 
@@ -47,7 +47,7 @@
 .nav-link {
   text-decoration: none;
   font-weight: var(--font-weight-medium);
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-lg);
   color: var(--color-text-secondary);
 
   padding: var(--space-1) 0;
