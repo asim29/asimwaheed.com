@@ -7,6 +7,7 @@ const {
 } = Astro.props;
 
 import IconLink from "./IconLink.astro";
+import "./Footer.css";
 
 import MailIcon from "../icons/mail.svg";
 import GitHubIcon from "../icons/github.svg";
@@ -14,16 +15,11 @@ import LinkedInIcon from "../icons/linkedin.svg";
 import ScholarIcon from "../icons/graduation-cap.svg";
 
 import { CONTACT_ARIA_LABELS } from "../constants/aria";
+
 ---
 
-<footer style="margin-top: var(--space-8);">
-  <div
-    style="
-      display: flex;
-      gap: var(--space-4);
-      align-items: center;
-    "
-  >
+<footer class="footer">
+  <div class="footer-links">
     <IconLink
       href={`mailto:${email}`}
       ariaLabel={CONTACT_ARIA_LABELS.email}
@@ -50,13 +46,7 @@ import { CONTACT_ARIA_LABELS } from "../constants/aria";
     />
   </div>
 
-  <p
-    style="
-      margin-top: var(--space-4);
-      font-size: var(--font-size-sm);
-      color: var(--color-text-secondary);
-    "
-  >
+  <p class="footer-meta">
     Last updated: January 2026 / Asim Waheed
   </p>
 </footer>

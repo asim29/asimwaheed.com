@@ -7,6 +7,8 @@ const {
   external = true,
 } = Astro.props;
 
+import "./IconLink.css"
+
 if (!ariaLabel) {
   throw new Error("IconLink requires an ariaLabel prop");
 }

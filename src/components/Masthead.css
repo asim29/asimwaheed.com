@@ -1,0 +1,66 @@
+/* Masthead */
+.masthead {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+}
+
+/* Top Row */
+.masthead-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Left / Right regions */
+.masthead-left {
+  flex: 0 0 auto;
+}
+
+/* Right-side icon links */
+.masthead-right {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+/* Name link */
+.masthead-name {
+  text-decoration: none;
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-4xl);
+  line-height: var(--line-height-tight);
+}
+
+/* Nav Links */
+.masthead-nav {
+  display: flex;
+  gap: var(--space-5);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+/* Navigation links (masthead) */
+.nav-link {
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-xl);
+  color: var(--color-text-secondary);
+
+  padding: var(--space-1) 0;
+
+  border-bottom: 1px solid transparent;
+  transition:
+    color 150ms ease,
+    border-color 150ms ease;
+}
+
+.nav-link:hover,
+.nav-link:focus-visible {
+  text-decoration: none; /* <- important */
+  color: var(--color-text-primary);
+  border-bottom-color: var(--color-border-subtle);
+}
