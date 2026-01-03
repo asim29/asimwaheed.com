@@ -11,7 +11,7 @@ import ScholarIcon from "../icons/graduation-cap.svg";
 import { CONTACT_ARIA_LABELS } from "../constants/aria";
 import { SITE } from "../constants/site";
 
-const { pathname } = Astro.url;
+const pathname = Astro.url.pathname.replace(/\/$/, "");
 ---
 
 <header class="masthead">
