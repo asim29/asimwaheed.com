@@ -1,11 +1,21 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-// Load all timeline entries
-const entries = await Astro.glob("../content/about/*.md");
+// Load all about content
+const allEntries = await Astro.glob("../content/about/*.md");
 
-// Sort: newest → oldest
-const sortedEntries = entries.sort((a, b) => {
+// Extract intro
+const introEntry = allEntries.find(
+  (e) => e.frontmatter.kind === "intro"
+);
+
+// Extract timeline entries
+const timelineEntries = allEntries.filter(
+  (e) => e.frontmatter.kind !== "intro"
+);
+
+// Sort timeline: newest → oldest
+const sortedEntries = timelineEntries.sort((a, b) => {
   const aEnd = a.frontmatter.end === "present" ? Infinity : a.frontmatter.end;
   const bEnd = b.frontmatter.end === "present" ? Infinity : b.frontmatter.end;
   return bEnd - aEnd;
@@ -13,6 +23,12 @@ const sortedEntries = entries.sort((a, b) => {
 ---
 
 <BaseLayout title="About" description="Background and trajectory">
+  {introEntry && (
+    <section class="about-intro">
+      <introEntry.Content />
+    </section>
+  )}
+
   <section class="timeline">
     {sortedEntries.map((Entry) => (
       <div class="timeline-item">

@@ -3,4 +3,4 @@ start: 2025
 end: present
 ---
 
-Work in progress.
+I recently started my PhD, hoping to prevent AI from turning into Skynet.
