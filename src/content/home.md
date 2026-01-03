@@ -11,10 +11,10 @@ supervised by
 and
 [N. Asokan](https://asokan.org/asokan/).
 
-If you're curious about how I got here, there's more context [here](/about).
+See my [work](/work) if you're curious how I ended up here.
 
 My __research__ lies at the intersection of machine learning security, privacy, and fairness.
-I study specific points across this pipeline, with a recurring focus on how theoretical ideas translate into real systems.
+I study specific points across this pipeline, with a recurring focus on how theoretical ideas interact and translate into real systems.
 
 A __central theme__ of my work is standardization: building frameworks, tools, and evaluation methodologies that make research results easier to reproduce, compare, and apply in practice.
 Through this, I aim to bridge the gap between academic research and industry by turning fragmented insights into usable, well-defined systems.
