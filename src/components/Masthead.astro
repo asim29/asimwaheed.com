@@ -24,61 +24,46 @@ const pathname = Astro.url.pathname.replace(/\/$/, "");
     </div>
 
     <div class="masthead-right">
-      <IconLink
-        href={`mailto:${SITE.email}`}
-        ariaLabel={CONTACT_ARIA_LABELS.email}
-        icon={MailIcon}
-        external={false}
-      />
+      <span class="email-icon">
+        <IconLink
+          href={`mailto:${SITE.email}`}
+          ariaLabel={CONTACT_ARIA_LABELS.email}
+          icon={MailIcon}
+          external={false}
+        />
+      </span>
 
-      <IconLink
-        href={SITE.github}
-        ariaLabel={CONTACT_ARIA_LABELS.github}
-        icon={GitHubIcon}
-      />
-
-      <IconLink
-        href={SITE.scholar}
-        ariaLabel={CONTACT_ARIA_LABELS.scholar}
-        icon={ScholarIcon}
-      />
-
-      <IconLink
-        href={SITE.linkedin}
-        ariaLabel={CONTACT_ARIA_LABELS.linkedin}
-        icon={LinkedInIcon}
-      />
+      <IconLink href={SITE.github} ariaLabel={CONTACT_ARIA_LABELS.github} icon={GitHubIcon} />
+      <IconLink href={SITE.scholar} ariaLabel={CONTACT_ARIA_LABELS.scholar} icon={ScholarIcon} />
+      <IconLink href={SITE.linkedin} ariaLabel={CONTACT_ARIA_LABELS.linkedin} icon={LinkedInIcon} />
     </div>
   </div>
 
-  <!-- Row 2: Navigation -->
+  <!-- Desktop nav -->
   <nav class="masthead-nav" aria-label="Primary">
-    <a
-      href="/"
-      class={`nav-link ${pathname === "/" || pathname === "" ? "active" : ""}`}
-    >
-      Home
-    </a>
-
-    <a
-      href="/work"
-      class={`nav-link ${pathname === "/work" ? "active" : ""}`}
-    >
-      Work
-    </a>
-
-    <a
-      href="/publications"
-      class={`nav-link ${pathname === "/publications" ? "active" : ""}`}
-    >
-      Publications
-    </a>
-
-    <a
-      href="/collaborate"
-      class={`nav-link ${pathname === "/collaborate" ? "active" : ""}`}
-    >
-      Collaborate
-    </a>
+    <a href="/" class={`nav-link ${pathname === "" ? "active" : ""}`}>Home</a>
+    <a href="/work" class={`nav-link ${pathname === "/work" ? "active" : ""}`}>Work</a>
+    <a href="/publications" class={`nav-link ${pathname === "/publications" ? "active" : ""}`}>Publications</a>
+    <a href="/collaborate" class={`nav-link ${pathname === "/collaborate" ? "active" : ""}`}>Collaborate</a>
   </nav>
+
+  <!-- Mobile menu -->
+  <div class="masthead-menu" aria-label="Primary">
+    <details class="menu-details">
+      <summary class="menu-summary">
+        <span class="menu-label">Menu</span>
+        <span class="menu-close">×</span>
+      </summary>
+
+      <nav class="menu-panel" aria-label="Mobile primary">
+        <a href="/" class={`nav-link ${pathname === "" ? "active" : ""}`}>Home</a>
+        <a href="/work" class={`nav-link ${pathname === "/work" ? "active" : ""}`}>Work</a>
+        <a href="/publications" class={`nav-link ${pathname === "/publications" ? "active" : ""}`}>Publications</a>
+        <a href="/collaborate" class={`nav-link ${pathname === "/collaborate" ? "active" : ""}`}>Collaborate</a>
+        <div class="menu-contact">
+          <a href="mailto:contact@asimwaheed.com">contact@asimwaheed.com</a>
+        </div>
+      </nav>
+    </details>
+  </div>
 </header>

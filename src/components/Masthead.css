@@ -13,14 +13,8 @@
   justify-content: space-between;
 }
 
-/* Left / Right regions */
-.masthead-left {
-  flex: 0 0 auto;
-}
-
 /* Right-side icon links */
 .masthead-right {
-  flex: 0 0 auto;
   display: flex;
   align-items: center;
   gap: var(--space-4);
@@ -35,7 +29,7 @@
   line-height: var(--line-height-tight);
 }
 
-/* Nav Links */
+/* Nav Links (desktop row) */
 .masthead-nav {
   display: flex;
   gap: var(--space-5);
@@ -43,28 +37,12 @@
   border-top: 1px solid var(--color-border-subtle);
 }
 
-/* Navigation links (masthead) */
+/* Navigation links */
 .nav-link {
   text-decoration: none;
-  font-weight: var(--font-weight-bold);
   font-size: var(--font-size-lg);
   color: var(--color-text-secondary);
-
-  padding: 0 var(--space-1); /* no vertical padding */
-  line-height: 1.5;          /* tighter line box */
-
-  border-bottom: 1px solid transparent;
-
-  transition:
-    color 150ms ease,
-    border-color 150ms ease;
-}
-
-.nav-link:hover,
-.nav-link:focus-visible {
-  text-decoration: none; /* <- important */
-  color: var(--color-text-primary);
-  border-bottom-color: var(--color-border-subtle);
+  line-height: 1.6;
 }
 
 .nav-link.active {
@@ -74,4 +52,144 @@
 
 .nav-link:not(.active) {
   font-weight: var(--font-weight-medium);
+}
+
+/* Mobile menu hidden by default (desktop) */
+.masthead-menu {
+  display: none;
+}
+
+/* =========================
+   Mobile Masthead Behavior
+   ========================= */
+@media (max-width: 640px) {
+  /* Hide desktop inline nav */
+  .masthead-nav {
+    display: none;
+  }
+
+  /* Show mobile menu row */
+  .masthead-menu {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: var(--space-2);
+    border-top: 1px solid var(--color-border-subtle);
+  }
+
+  /* Hide email icon on phone */
+  .email-icon {
+    display: none;
+  }
+
+  /* Anchor for the dropdown */
+  .menu-details {
+    position: relative;
+    display: inline-block;
+  }
+
+  /* Menu toggle */
+  .menu-summary {
+    cursor: pointer;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-secondary);
+    list-style: none;
+
+    position: relative;
+    z-index: 50; /* sits above scrim */
+  }
+  /* Keep the summary text (Menu / ×) above the scrim */
+  .menu-summary > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  .menu-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  /* Full-screen scrim that ALSO closes the menu (because it's part of summary) */
+  .menu-details[open] .menu-summary::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background: color-mix(in srgb, var(--color-bg-muted) 96%, transparent);
+
+    z-index: 1; /* behind the summary text */
+  }
+
+  @supports not (background: color-mix(in srgb, white 50%, transparent)) {
+    .menu-details[open] .menu-summary::after {
+      background: rgba(0, 0, 0, 0.08);
+    }
+  }
+
+  /* Menu panel aligned to the Menu toggle, overlaying content */
+  .menu-panel {
+    position: absolute;
+    top: calc(100% + var(--space-2));
+    right: 0;
+
+    padding: var(--space-4);
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--space-3);
+
+    color: var(--color-text-secondary);
+
+    z-index: 60; /* above scrim */
+  }
+
+  /* Make the menu itself readable without adding a "floating card" look */
+  .menu-panel .nav-link {
+    padding: 0;
+    border-bottom: none;
+    line-height: 1.6;
+  }
+
+  .menu-panel .nav-link.active {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+  }
+
+  .menu-contact {
+    margin-top: var(--space-4);
+    padding-top: var(--space-3);
+
+    border-top: 1px solid var(--color-text-secondary);
+
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+
+    align-self: stretch;
+    text-align: right;
+  }
+
+  .menu-contact a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .menu-contact a:hover,
+  .menu-contact a:focus-visible {
+    text-decoration: underline;
+  }
+  /* Menu label / close icon swap */
+  .menu-close {
+    display: none;
+    font-size: 1.4em;
+    line-height: 1;
+    font-weight: var(--font-weight-medium);
+  }
+
+  .menu-details[open] .menu-label {
+    display: none;
+  }
+
+  .menu-details[open] .menu-close {
+    display: inline;
+  }
 }
