@@ -5,20 +5,20 @@ title: Collaborate
 
 ### Joint Research
 
-I enjoy collaborating on research in machine learning security and privacy, especially work that takes evaluation seriously and stays close to how systems behave in practice.  
-I tend to work best in collaborations that are curious, direct, and driven by discussion rather than formality.
+I’m interested in researching AI security, privacy, and fairness to better understand how machine learning systems can be misused or pushed outside their intended behavior in practice.
+I’m very open to cross-disciplinary collaboration, and I’m always glad to work with people approaching these questions from different angles.
 
 ### Consulting
 
-I work with teams who already have machine learning systems in production and want to reason more carefully about security and privacy risks.  
-Most engagements involve clarifying threat models, evaluating existing defenses, and understanding where assumptions start to break once real constraints are involved.
+I work with teams to analyze and clarify security and privacy risks in machine learning systems.
+This often includes refining threat models, stress-testing existing defenses, and identifying where assumptions break down under real-world constraints.
 
 ### Mentoring
 
-I’m happy to talk with students and early-career researchers about research direction and career choices.  
-I especially enjoy conversations with students from my alma mater, LUMS, or those considering paths in ML security and privacy.
+I enjoy chatting with students and early-career researchers about research direction and career choices. 
+In the past I've especially enjoyed conversations with students from my alma mater, LUMS, or those considering paths in ML security and privacy.
 
 ### Reaching Out
 
-If any of this resonates, feel free to reach out by email.  
+If any of this resonates, feel free to reach out by email. 
 A short note with a bit of context is more than enough.

@@ -11,7 +11,7 @@ supervised by
 and
 [N. Asokan](https://asokan.org/asokan/).
 
-See my [work](/work) if you're curious how I ended up here.
+See my __[work](/work)__ if you're curious how I ended up here.
 
 My __research__ lies at the intersection of machine learning security, privacy, and fairness.
 I study specific points across this pipeline, with a recurring focus on how theoretical ideas interact and translate into real systems.
