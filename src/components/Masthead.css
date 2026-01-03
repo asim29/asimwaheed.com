@@ -43,6 +43,12 @@
   font-size: var(--font-size-lg);
   color: var(--color-text-secondary);
   line-height: 1.6;
+
+  border-bottom: 1px solid transparent;
+
+  transition:
+    color 150ms ease,
+    border-color 150ms ease;
 }
 
 .nav-link.active {
@@ -54,9 +60,20 @@
   font-weight: var(--font-weight-medium);
 }
 
+.nav-link:hover,
+.nav-link:focus-visible {
+  text-decoration: none; /* <- important */
+  color: var(--color-text-primary);
+  border-bottom-color: var(--color-border-subtle);
+}
 /* Mobile menu hidden by default (desktop) */
 .masthead-menu {
   display: none;
+}
+
+.email-icon {
+  display: flex;
+  align-items: center;
 }
 
 /* =========================
