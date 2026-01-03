@@ -1,0 +1,15 @@
+{
+  "title": "Darwin's Theory of Censorship: Analysing the Evolution of Censored Topics with Dynamic Topic Models",
+  "authors": [
+    "Asim Waheed",
+    "Sara Qunaibi",
+    "Diogo Barradas",
+    "Zachary Weinberg"
+  ],
+  "venue": "WPES Workshop",
+  "year": 2022,
+  "links": {
+    "paper": "https://dl.acm.org/doi/10.1145/3559613.3563206",
+    "code": "https://github.com/dmbb/dynamic_topic_modelling_of_censorship"
+  }
+}

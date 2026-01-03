@@ -1,0 +1,13 @@
+.publication {
+  margin-bottom: var(--space-7);
+}
+
+.publication-meta {
+  margin-bottom: var(--space-2);
+}
+
+.publication-links {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: var(--font-size-sm);
+}

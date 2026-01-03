@@ -1,0 +1,44 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+import "./_publications.css";
+
+const publications = await getCollection("publications");
+
+// newest → oldest
+publications.sort((a, b) => b.data.year - a.data.year);
+---
+
+<BaseLayout title="Publications" description="Research publications">
+  {publications.map(({ data }) => {
+    const links = data.links ? Object.entries(data.links) : [];
+
+    return (
+      <section class="publication">
+        <h3>{data.title}</h3>
+
+        <p class="publication-meta">
+          {data.authors.join(", ")}
+          <br />
+          <small>
+            {data.venue} · {data.year}
+          </small>
+        </p>
+
+        {links.length > 0 && (
+          <p class="publication-links">
+            {links.map(([label, url], i) => (
+              <>
+                <a href={url} target="_blank" rel="noopener noreferrer">
+                  {label}
+                </a>
+                {i < links.length - 1 && " · "}
+              </>
+            ))}
+          </p>
+        )}
+      </section>
+    );
+  })}
+</BaseLayout>
