@@ -68,3 +68,30 @@
     grid-template-columns: 1fr;
   }
 }
+
+.work-other {
+  margin-top: var(--space-7);
+  padding-top: var(--space-5);
+  max-width: var(--max-width-md);
+}
+
+.work-other h3 {
+  margin-bottom: var(--space-3);
+  font-size: var(--font-size-xl);
+  color: var(--color-text-secondary);
+}
+
+.work-other p {
+  margin-bottom: 0;
+  color: var(--color-text-secondary);
+}
+
+.work-other ul {
+  margin: 0;
+  padding-left: 1.2em;
+}
+
+.work-other li {
+  margin-bottom: var(--space-2);
+  color: var(--color-text-secondary);
+}

@@ -1,25 +1,34 @@
 ---
+import type { MarkdownInstance } from "astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import "./_work.css"
+import "./_work.css";
 
-// Load all about content
-const allEntries = await Astro.glob("../content/work/*.md");
+// Give the markdown a type so TS knows about frontmatter + Content
+type WorkFrontmatter = {
+  kind: "intro" | "other" | "timeline";
+  start?: number;
+  end?: number | "present";
+  title?: string;
+};
 
-// Extract intro
-const introEntry = allEntries.find(
-  (e) => e.frontmatter.kind === "intro"
+const allEntries = Object.values(
+  import.meta.glob<MarkdownInstance<WorkFrontmatter>>(
+    "../content/work/*.md",
+    { eager: true }
+  )
 );
 
-// Extract timeline entries
+const introEntry = allEntries.find((e) => e.frontmatter.kind === "intro");
+const otherEntry = allEntries.find((e) => e.frontmatter.kind === "other");
+
 const timelineEntries = allEntries.filter(
-  (e) => e.frontmatter.kind !== "intro"
+  (e) => e.frontmatter.kind !== "intro" && e.frontmatter.kind !== "other"
 );
 
-// Sort timeline: newest → oldest
 const sortedEntries = timelineEntries.sort((a, b) => {
-  const aEnd = a.frontmatter.end === "present" ? Infinity : a.frontmatter.end;
-  const bEnd = b.frontmatter.end === "present" ? Infinity : b.frontmatter.end;
-  return bEnd - aEnd;
+  const aEnd = a.frontmatter.end === "present" ? Infinity : (a.frontmatter.end ?? -Infinity);
+  const bEnd = b.frontmatter.end === "present" ? Infinity : (b.frontmatter.end ?? -Infinity);
+  return Number(bEnd) - Number(aEnd);
 });
 ---
 
@@ -45,4 +54,11 @@ const sortedEntries = timelineEntries.sort((a, b) => {
       </div>
     ))}
   </section>
+
+  {otherEntry && (
+    <section class="work-other">
+      <h3>{otherEntry.frontmatter.title}</h3>
+      <otherEntry.Content />
+    </section>
+  )}
 </BaseLayout>
