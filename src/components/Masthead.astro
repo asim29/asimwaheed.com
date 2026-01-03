@@ -55,7 +55,7 @@ const pathname = Astro.url.pathname.replace(/\/$/, "");
   <nav class="masthead-nav" aria-label="Primary">
     <a
       href="/"
-      class={`nav-link ${pathname === "/" ? "active" : ""}`}
+      class={`nav-link ${pathname === "/" || pathname === "" ? "active" : ""}`}
     >
       Home
     </a>
