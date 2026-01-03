@@ -1,8 +1,8 @@
-/* about.css */
+/* work.css */
 
 .timeline {
   --timeline-gutter: var(--space-4);
-  --timeline-axis: var(--space-1);
+  --timeline-axis: 4px; /* corresponds to space-1 */
 
   margin-top: var(--space-6);
   display: grid;
