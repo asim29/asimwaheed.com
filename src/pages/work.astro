@@ -3,7 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import "./_work.css"
 
 // Load all about content
-const allEntries = await Astro.glob("../content/about/*.md");
+const allEntries = await Astro.glob("../content/work/*.md");
 
 // Extract intro
 const introEntry = allEntries.find(
@@ -23,9 +23,9 @@ const sortedEntries = timelineEntries.sort((a, b) => {
 });
 ---
 
-<BaseLayout title="About" description="Background and trajectory">
+<BaseLayout title="Work" description="Background and trajectory">
   {introEntry && (
-    <section class="about-intro">
+    <section class="work-intro">
       <introEntry.Content />
     </section>
   )}

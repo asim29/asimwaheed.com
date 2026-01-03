@@ -19,5 +19,5 @@ Through this, I aim to bridge the gap between academic research and industry by 
 
 You can find a list of my __[publications here](/publications)__.
 
+### Contact
 I’m open to research collaborations, consulting, and related discussions. Reach out to [asim.waheed29@gmail.com](mailto:asim.waheed29@gmail.com).
-<!-- More details can be found [here](/collaborate). -->
