@@ -1,13 +1,4 @@
 ---
-const {
-  name = "Asim Waheed",
-  href = "/",
-  email = "asim.waheed29@gmail.com",
-  github = "https://www.github.com/asim29",
-  scholar = "https://scholar.google.com/citations?user=PgPuHyQAAAAJ",
-  linkedin = "https://www.linkedin.com/in/asim-waheed97/",
-} = Astro.props;
-
 import "./Masthead.css";
 
 import IconLink from "./IconLink.astro";
@@ -18,36 +9,40 @@ import LinkedInIcon from "../icons/linkedin.svg";
 import ScholarIcon from "../icons/graduation-cap.svg";
 
 import { CONTACT_ARIA_LABELS } from "../constants/aria";
+import { SITE } from "../constants/site";
 ---
 
 <header class="masthead">
   <!-- Row 1: Identity + Icons -->
   <div class="masthead-top">
     <div class="masthead-left">
-      <a href={href} class="masthead-name">
-        {name}
+      <a href={SITE.homeHref} class="masthead-name">
+        {SITE.name}
       </a>
     </div>
 
     <div class="masthead-right">
       <IconLink
-        href={`mailto:${email}`}
+        href={`mailto:${SITE.email}`}
         ariaLabel={CONTACT_ARIA_LABELS.email}
         icon={MailIcon}
         external={false}
       />
+
       <IconLink
-        href={github}
+        href={SITE.github}
         ariaLabel={CONTACT_ARIA_LABELS.github}
         icon={GitHubIcon}
       />
+
       <IconLink
-        href={scholar}
+        href={SITE.scholar}
         ariaLabel={CONTACT_ARIA_LABELS.scholar}
         icon={ScholarIcon}
       />
+
       <IconLink
-        href={linkedin}
+        href={SITE.linkedin}
         ariaLabel={CONTACT_ARIA_LABELS.linkedin}
         icon={LinkedInIcon}
       />
