@@ -50,6 +50,8 @@ h2 {
 
 h3 {
   font-size: var(--font-size-2xl);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-2);
 }
 
 h4 {
@@ -70,7 +72,7 @@ h6 {
 
 p {
   margin-top: 0;
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-5);
   max-width: var(--max-width-md);
 }
 
