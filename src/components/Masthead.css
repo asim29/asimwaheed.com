@@ -79,7 +79,7 @@
 /* =========================
    Mobile Masthead Behavior
    ========================= */
-@media (max-width: 640px) {
+@media (width <= 640px) {
   /* Hide desktop inline nav */
   .masthead-nav {
     display: none;
@@ -138,7 +138,7 @@
 
   @supports not (background: color-mix(in srgb, white 50%, transparent)) {
     .menu-details[open] .menu-summary::after {
-      background: rgba(0, 0, 0, 0.08);
+      background: rgb(0 0 0 / 8%);
     }
   }
 

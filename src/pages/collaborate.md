@@ -15,10 +15,10 @@ This often includes refining threat models, stress-testing existing defenses, an
 
 ### Mentoring
 
-I enjoy chatting with students and early-career researchers about research direction and career choices. 
+I enjoy chatting with students and early-career researchers about research direction and career choices.
 In the past I've especially enjoyed conversations with students from my alma mater, LUMS, or those considering paths in ML security and privacy.
 
 ### Reaching Out
 
-If any of this resonates, feel free to reach out by email. 
+If any of this resonates, feel free to reach out by email.
 A short note with a bit of context is more than enough.

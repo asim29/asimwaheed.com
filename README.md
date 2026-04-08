@@ -47,6 +47,7 @@ Verify installation:
 node -v
 npm -v
 ```
+
 ---
 
 ### 2. Install dependencies
@@ -56,6 +57,7 @@ From the project root:
 ```zsh
 npm install
 ```
+
 ---
 
 ### 3. Run the dev server
@@ -63,11 +65,13 @@ npm install
 ```zsh
 npm run dev
 ```
+
 Astro will start a local development server at:
 
 ```zsh
 http://localhost:4321
 ```
+
 ---
 
 ## Project Structure (current)
@@ -85,6 +89,7 @@ http://localhost:4321
 ├── package-lock.json
 └── README.md
 ```
+
 ---
 
 ## Key Files
@@ -98,21 +103,25 @@ src/pages/index.astro
 - Homepage content
 - Uses BaseLayout
 ```
+
 ---
 
 ## Commands
 
 Start local dev server
+
 ```zsh
 npm run dev
 ```
 
 Build static site to dist/
+
 ```zsh
 npm run build
 ```
 
 Preview production build locally
+
 ```zsh
 npm run preview
 ```
@@ -124,6 +133,7 @@ npm run preview
 Early bootstrap phase.
 
 Current state:
+
 - Astro initialized
 - Layout abstraction in place
 - Single homepage route

@@ -1,10 +1,6 @@
 {
   "title": "GrOVe: Ownership Verification of Graph Neural Networks Using Embeddings",
-  "authors": [
-    "Asim Waheed",
-    "Vasisht Duddu",
-    "N. Asokan"
-  ],
+  "authors": ["Asim Waheed", "Vasisht Duddu", "N. Asokan"],
   "venue": "IEEE Symposium on Security and Privacy",
   "year": 2024,
   "links": {

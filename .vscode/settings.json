@@ -1,0 +1,23 @@
+{
+  "files.exclude": {
+    "**/node_modules": true,
+    "dist": true,
+    ".astro": true
+  },
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "dist/**": true,
+    ".astro/**": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "dist": true,
+    ".astro": true,
+    "package-lock.json": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "[astro]": {
+    "editor.defaultFormatter": "astro-build.astro-vscode"
+  }
+}

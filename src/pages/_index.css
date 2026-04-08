@@ -21,7 +21,7 @@
 }
 
 /* Mobile: photo on top */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .intro-photo {
     float: none;
     margin: 0 auto var(--space-4);

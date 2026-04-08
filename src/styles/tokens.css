@@ -2,31 +2,31 @@
   /* ─────────────────────────────
      Raw palette — Neutrals
      ───────────────────────────── */
-  --color-mist-grey: #F7F8FA;
-  --color-deep-slate: #1E293B;
-  --color-ash: #D1D5DB;
+  --color-mist-grey: #f7f8fa;
+  --color-deep-slate: #1e293b;
+  --color-ash: #d1d5db;
   --color-charcoal: #374151;
 
   /* ─────────────────────────────
      Raw palette — Accents
      ───────────────────────────── */
-  --color-midnight-blue-fill: #2646A6;
-  --color-midnight-blue-text: #1E326F;
+  --color-midnight-blue-fill: #2646a6;
+  --color-midnight-blue-text: #1e326f;
 
-  --color-teal-fill: #13837F;
-  --color-teal-text: #0F6865;
+  --color-teal-fill: #13837f;
+  --color-teal-text: #0f6865;
 
-  --color-amber-fill: #F2B441;
-  --color-amber-text: #6C511D;
+  --color-amber-fill: #f2b441;
+  --color-amber-text: #6c511d;
 
-  --color-raspberry-fill: #C94964;
-  --color-raspberry-text: #96364B;
+  --color-raspberry-fill: #c94964;
+  --color-raspberry-text: #96364b;
 
   /* ─────────────────────────────
      Raw palette — Semantic
      ───────────────────────────── */
-  --color-emerald: #1A6342;
-  --color-crimson: #AD2C2C;
+  --color-emerald: #1a6342;
+  --color-crimson: #ad2c2c;
 
   /* ─────────────────────────────
      Semantic roles — Site usage
@@ -54,29 +54,31 @@
   --color-status-success: var(--color-emerald);
   --color-status-error: var(--color-crimson);
 
-    /* ─────────────────────────────
+  /* ─────────────────────────────
      Typography — Font families
      ───────────────────────────── */
-  --font-sans: "Source Sans 3", system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-sans:
+    "Source Sans 3", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
 
   --font-serif: "Source Serif 4", Georgia, "Times New Roman", Times, serif;
 
-  --font-mono: "JetBrains Mono", SFMono-Regular, Menlo, Monaco, Consolas,
+  --font-mono:
+    "JetBrains Mono", SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
 
   /* ─────────────────────────────
      Typography — Font sizes
      (modular, restrained)
      ───────────────────────────── */
-  --font-size-xs: 0.75rem;   /* 12px */
-  --font-size-sm: 0.875rem;  /* 14px */
-  --font-size-md: 1rem;      /* 16px */
-  --font-size-lg: 1.125rem;  /* 18px */
-  --font-size-xl: 1.25rem;   /* 20px */
-  --font-size-2xl: 1.5rem;   /* 24px */
+  --font-size-xs: 0.75rem; /* 12px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-md: 1rem; /* 16px */
+  --font-size-lg: 1.125rem; /* 18px */
+  --font-size-xl: 1.25rem; /* 20px */
+  --font-size-2xl: 1.5rem; /* 24px */
   --font-size-3xl: 1.875rem; /* 30px */
-  --font-size-4xl: 2.25rem;  /* 36px */
+  --font-size-4xl: 2.25rem; /* 36px */
 
   /* ─────────────────────────────
      Typography — Font weights
@@ -97,14 +99,14 @@
      Spacing — 8px grid
      ───────────────────────────── */
   --space-0: 0;
-  --space-1: 0.25rem;  /* 4px */
-  --space-2: 0.5rem;   /* 8px */
-  --space-3: 0.75rem;  /* 12px */
-  --space-4: 1rem;     /* 16px */
-  --space-5: 1.5rem;   /* 24px */
-  --space-6: 2rem;     /* 32px */
-  --space-7: 3rem;     /* 48px */
-  --space-8: 4rem;     /* 64px */
+  --space-1: 0.25rem; /* 4px */
+  --space-2: 0.5rem; /* 8px */
+  --space-3: 0.75rem; /* 12px */
+  --space-4: 1rem; /* 16px */
+  --space-5: 1.5rem; /* 24px */
+  --space-6: 2rem; /* 32px */
+  --space-7: 3rem; /* 48px */
+  --space-8: 4rem; /* 64px */
 
   /* ─────────────────────────────
      Radii — restrained tiers
@@ -117,16 +119,15 @@
   /* ─────────────────────────────
      Max widths — content discipline
      ───────────────────────────── */
-  --max-width-xs: 32rem;  /* ~512px */
-  --max-width-sm: 40rem;  /* ~640px */
-  --max-width-md: 48rem;  /* ~768px */
-  --max-width-lg: 64rem;  /* ~1024px */
- 
+  --max-width-xs: 32rem; /* ~512px */
+  --max-width-sm: 40rem; /* ~640px */
+  --max-width-md: 48rem; /* ~768px */
+  --max-width-lg: 64rem; /* ~1024px */
+
   /* ─────────────────────────────
   Semantic roles — Borders / rules
   ───────────────────────────── */
-  --color-border-subtle: var(--color-ash);        /* quiet dividers, timelines */
+  --color-border-subtle: var(--color-ash); /* quiet dividers, timelines */
   --color-border-default: var(--color-charcoal); /* standard rules, outlines */
-  --color-border-strong: var(--color-deep-slate);/* emphasis, section breaks */
-  
+  --color-border-strong: var(--color-deep-slate); /* emphasis, section breaks */
 }

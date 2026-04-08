@@ -1,13 +1,7 @@
 ---
-const {
-  href,
-  ariaLabel,
-  icon: Icon,
-  size = 24,
-  external = true,
-} = Astro.props;
+const { href, ariaLabel, icon: Icon, size = 24, external = true } = Astro.props;
 
-import "./IconLink.css"
+import "./IconLink.css";
 
 if (!ariaLabel) {
   throw new Error("IconLink requires an ariaLabel prop");
@@ -17,9 +11,7 @@ if (!ariaLabel) {
 <a
   href={href}
   aria-label={ariaLabel}
-  {...(external
-    ? { target: "_blank", rel: "noopener" }
-    : {})}
+  {...external ? { target: "_blank", rel: "noopener" } : {}}
   class="icon-link"
 >
   <Icon width={size} height={size} />

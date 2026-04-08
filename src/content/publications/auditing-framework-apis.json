@@ -1,11 +1,6 @@
 {
   "title": "Auditing Framework APIs via Inferred App-side Security Specifications",
-  "authors": [
-    "Parjanya Vyas",
-    "Asim Waheed",
-    "Yousra Aafer",
-    "N. Asokan"
-  ],
+  "authors": ["Parjanya Vyas", "Asim Waheed", "Yousra Aafer", "N. Asokan"],
   "venue": "USENIX Security Symposium",
   "year": 2023,
   "links": {

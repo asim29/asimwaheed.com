@@ -12,10 +12,9 @@ type WorkFrontmatter = {
 };
 
 const allEntries = Object.values(
-  import.meta.glob<MarkdownInstance<WorkFrontmatter>>(
-    "../content/work/*.md",
-    { eager: true }
-  )
+  import.meta.glob<MarkdownInstance<WorkFrontmatter>>("../content/work/*.md", {
+    eager: true,
+  })
 );
 
 const introEntry = allEntries.find((e) => e.frontmatter.kind === "intro");
@@ -26,39 +25,51 @@ const timelineEntries = allEntries.filter(
 );
 
 const sortedEntries = timelineEntries.sort((a, b) => {
-  const aEnd = a.frontmatter.end === "present" ? Infinity : (a.frontmatter.end ?? -Infinity);
-  const bEnd = b.frontmatter.end === "present" ? Infinity : (b.frontmatter.end ?? -Infinity);
+  const aEnd =
+    a.frontmatter.end === "present"
+      ? Infinity
+      : (a.frontmatter.end ?? -Infinity);
+  const bEnd =
+    b.frontmatter.end === "present"
+      ? Infinity
+      : (b.frontmatter.end ?? -Infinity);
   return Number(bEnd) - Number(aEnd);
 });
 ---
 
 <BaseLayout title="Work" description="Background and trajectory">
-  {introEntry && (
-    <section class="work-intro">
-      <introEntry.Content />
-    </section>
-  )}
+  {
+    introEntry && (
+      <section class="work-intro">
+        <introEntry.Content />
+      </section>
+    )
+  }
 
   <section class="timeline">
-    {sortedEntries.map((Entry) => (
-      <div class="timeline-item">
-        <div class="timeline-marker"></div>
+    {
+      sortedEntries.map((Entry) => (
+        <div class="timeline-item">
+          <div class="timeline-marker" />
 
-        <div class="timeline-content">
-          <div class="timeline-dates">
-            {Entry.frontmatter.start} – {Entry.frontmatter.end}
+          <div class="timeline-content">
+            <div class="timeline-dates">
+              {Entry.frontmatter.start} – {Entry.frontmatter.end}
+            </div>
+
+            <Entry.Content />
           </div>
-
-          <Entry.Content />
         </div>
-      </div>
-    ))}
+      ))
+    }
   </section>
 
-  {otherEntry && (
-    <section class="work-other">
-      <h3>{otherEntry.frontmatter.title}</h3>
-      <otherEntry.Content />
-    </section>
-  )}
+  {
+    otherEntry && (
+      <section class="work-other">
+        <h3>{otherEntry.frontmatter.title}</h3>
+        <otherEntry.Content />
+      </section>
+    )
+  }
 </BaseLayout>
