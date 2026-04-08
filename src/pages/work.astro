@@ -1,63 +1,55 @@
 ---
-import type { MarkdownInstance } from "astro";
+import { getCollection, render } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import "./_work.css";
 
-// Give the markdown a type so TS knows about frontmatter + Content
-type WorkFrontmatter = {
-  kind: "intro" | "other" | "timeline";
-  start?: number;
-  end?: number | "present";
-  title?: string;
-};
+const allEntries = await getCollection("work");
 
-const allEntries = Object.values(
-  import.meta.glob<MarkdownInstance<WorkFrontmatter>>("../content/work/*.md", {
-    eager: true,
-  })
+const introEntry = allEntries.find((e) => e.data.kind === "intro");
+const otherEntry = allEntries.find((e) => e.data.kind === "other");
+
+const sortedTimeline = allEntries
+  .filter((e) => e.data.kind === "timeline")
+  .sort((a, b) => {
+    const aEnd =
+      a.data.end === "present" ? Infinity : (a.data.end ?? -Infinity);
+    const bEnd =
+      b.data.end === "present" ? Infinity : (b.data.end ?? -Infinity);
+    return Number(bEnd) - Number(aEnd);
+  });
+
+const IntroContent = introEntry ? (await render(introEntry)).Content : null;
+const OtherContent = otherEntry ? (await render(otherEntry)).Content : null;
+
+const timelineItems = await Promise.all(
+  sortedTimeline.map(async (entry) => ({
+    data: entry.data,
+    Content: (await render(entry)).Content,
+  }))
 );
-
-const introEntry = allEntries.find((e) => e.frontmatter.kind === "intro");
-const otherEntry = allEntries.find((e) => e.frontmatter.kind === "other");
-
-const timelineEntries = allEntries.filter(
-  (e) => e.frontmatter.kind !== "intro" && e.frontmatter.kind !== "other"
-);
-
-const sortedEntries = timelineEntries.sort((a, b) => {
-  const aEnd =
-    a.frontmatter.end === "present"
-      ? Infinity
-      : (a.frontmatter.end ?? -Infinity);
-  const bEnd =
-    b.frontmatter.end === "present"
-      ? Infinity
-      : (b.frontmatter.end ?? -Infinity);
-  return Number(bEnd) - Number(aEnd);
-});
 ---
 
 <BaseLayout title="Work" description="Background and trajectory">
   {
-    introEntry && (
+    IntroContent && (
       <section class="work-intro">
-        <introEntry.Content />
+        <IntroContent />
       </section>
     )
   }
 
   <section class="timeline">
     {
-      sortedEntries.map((Entry) => (
+      timelineItems.map(({ data, Content }) => (
         <div class="timeline-item">
           <div class="timeline-marker" />
 
           <div class="timeline-content">
             <div class="timeline-dates">
-              {Entry.frontmatter.start} – {Entry.frontmatter.end}
+              {data.start} – {data.end}
             </div>
 
-            <Entry.Content />
+            <Content />
           </div>
         </div>
       ))
@@ -65,10 +57,10 @@ const sortedEntries = timelineEntries.sort((a, b) => {
   </section>
 
   {
-    otherEntry && (
+    OtherContent && otherEntry && (
       <section class="work-other">
-        <h3>{otherEntry.frontmatter.title}</h3>
-        <otherEntry.Content />
+        <h3>{otherEntry.data.title}</h3>
+        <OtherContent />
       </section>
     )
   }

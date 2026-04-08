@@ -1,11 +1,11 @@
 import { defineConfig } from "astro/config";
-import remarkExternalLinks from "remark-external-links";
+import rehypeExternalLinks from "rehype-external-links";
 
 export default defineConfig({
   markdown: {
-    remarkPlugins: [
+    rehypePlugins: [
       [
-        remarkExternalLinks,
+        rehypeExternalLinks,
         {
           target: "_blank",
           rel: ["noopener", "noreferrer"],
