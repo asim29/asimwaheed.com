@@ -14,10 +14,23 @@ npm run format:check  # Prettier (check only, used in CI)
 npm run markdownlint  # markdownlint on all .md files
 npm run markdownlint:fix  # markdownlint with auto-fix
 npm run build         # production build to dist/
-npm run ci            # full CI suite locally (lint + format:check + markdownlint + check + build)
+npm run test          # Vitest (unit + build-output tests; build tests require dist/)
+npm run test:watch    # Vitest in watch mode
+npm run ci            # full CI suite locally (lint + format:check + markdownlint + check + build + test)
 ```
 
 Before every commit, run `npm run ci`. Resolve all errors before asking to commit.
+
+## Testing
+
+Tests live in `tests/` and run with Vitest:
+
+- `tests/unit/` — unit tests for logic in `src/lib/` (e.g. timeline sorting).
+  Extract nontrivial logic out of `.astro` frontmatter into `src/lib/` so it is testable.
+- `tests/build/` — assertions against the built HTML in `dist/` (run `npm run build` first):
+  page titles and meta, canonical URLs, internal-link resolution, external-link
+  `rel="noopener noreferrer"`, image alt text, and HTML validity (`html-validate`).
+  `tests/build/helpers.ts` holds the page manifest (`PAGES`) — update it when adding a page.
 
 ## Dependency Management
 
@@ -25,6 +38,18 @@ Before every commit, run `npm run ci`. Resolve all errors before asking to commi
 - Use `npm install --ignore-scripts` for new runtime dependencies.
 - The `--ignore-scripts` flag prevents npm lifecycle scripts from running during install.
 - After adding dependencies, run `npm audit` to check for vulnerabilities.
+- Dependabot (`.github/dependabot.yml`) opens weekly grouped update PRs; minor/patch PRs
+  auto-merge once CI passes (`.github/workflows/dependabot-auto-merge.yml`).
+
+## Security
+
+- GitHub Actions are pinned to full commit SHAs with a `# vX.Y.Z` comment. When bumping,
+  update both the SHA and the comment (Dependabot does this automatically).
+- All workflows declare least-privilege `permissions:` blocks.
+- CI fails on `npm audit --audit-level=high`; CodeQL and dependency-review run on PRs;
+  a scheduled weekly audit (`security-audit.yml`) catches drift between commits.
+- HTTP security headers (CSP, HSTS, etc.) are set in `public/_headers` (Cloudflare Pages).
+  The CSP has no `script-src` — adding client-side JavaScript requires updating it.
 
 ## Content Model
 

@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { byEndDescending } from "../lib/timeline";
 import "./_work.css";
 
 const allEntries = await getCollection("work");
@@ -10,13 +11,7 @@ const otherEntry = allEntries.find((e) => e.data.kind === "other");
 
 const sortedTimeline = allEntries
   .filter((e) => e.data.kind === "timeline")
-  .sort((a, b) => {
-    const aEnd =
-      a.data.end === "present" ? Infinity : (a.data.end ?? -Infinity);
-    const bEnd =
-      b.data.end === "present" ? Infinity : (b.data.end ?? -Infinity);
-    return Number(bEnd) - Number(aEnd);
-  });
+  .sort(byEndDescending);
 
 const IntroContent = introEntry ? (await render(introEntry)).Content : null;
 const OtherContent = otherEntry ? (await render(otherEntry)).Content : null;

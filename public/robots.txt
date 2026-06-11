@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://asimwaheed.com/sitemap-index.xml

@@ -14,10 +14,16 @@
     "format:check": "prettier --check .",
     "markdownlint": "markdownlint '**/*.md' --ignore-path .gitignore",
     "markdownlint:fix": "markdownlint --fix '**/*.md' --ignore-path .gitignore",
-    "ci": "npm run lint && npm run format:check && npm run markdownlint && npm run check && npm run build",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "ci": "npm run lint && npm run format:check && npm run markdownlint && npm run check && npm run build && npm run test",
     "prepare": "husky"
   },
+  "engines": {
+    "node": ">=24"
+  },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
     "astro": "^6.1.5"
   },
   "devDependencies": {
@@ -25,7 +31,9 @@
     "@eslint/js": "^10.0.1",
     "eslint": "^10.2.0",
     "eslint-plugin-astro": "^1.7.0",
+    "html-validate": "^11.5.3",
     "husky": "^9.1.7",
+    "linkedom": "^0.18.12",
     "lint-staged": "^16.4.0",
     "markdownlint-cli": "^0.48.0",
     "prettier": "^3.8.1",
@@ -35,6 +43,7 @@
     "stylelint-config-standard": "^40.0.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.58.1",
+    "vitest": "^4.1.8",
     "zod": "^4.3.6"
   },
   "lint-staged": {
