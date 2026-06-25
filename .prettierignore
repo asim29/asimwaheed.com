@@ -2,3 +2,6 @@ dist/
 .astro/
 node_modules/
 public/
+
+# machine-generated lockfile — never hand-format
+pnpm-lock.yaml

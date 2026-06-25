@@ -7,6 +7,6 @@ export default [
   ...tseslint.configs.recommended,
   ...astro.configs.recommended,
   {
-    ignores: ["dist/", "node_modules/", ".astro/"],
+    ignores: ["dist/", "node_modules/", ".astro/", "agent_docs/"],
   },
 ];

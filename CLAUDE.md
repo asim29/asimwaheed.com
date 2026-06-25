@@ -5,21 +5,22 @@
 The primary commands are:
 
 ```zsh
-npm run dev           # local dev server at localhost:4321
-npm run check         # TypeScript + Astro type check (astro check)
-npm run lint          # ESLint + Stylelint
-npm run lint:fix      # ESLint + Stylelint with auto-fix
-npm run format        # Prettier (write)
-npm run format:check  # Prettier (check only, used in CI)
-npm run markdownlint  # markdownlint on all .md files
-npm run markdownlint:fix  # markdownlint with auto-fix
-npm run build         # production build to dist/
-npm run test          # Vitest (unit + build-output tests; build tests require dist/)
-npm run test:watch    # Vitest in watch mode
-npm run ci            # full CI suite locally (lint + format:check + markdownlint + check + build + test)
+pnpm run dev           # local dev server at localhost:4321
+pnpm run check         # TypeScript + Astro type check (astro check)
+pnpm run lint          # ESLint + Stylelint
+pnpm run lint:fix      # ESLint + Stylelint with auto-fix
+pnpm run format        # Prettier (write)
+pnpm run format:check  # Prettier (check only, used in CI)
+pnpm run markdownlint  # markdownlint on all .md files
+pnpm run markdownlint:fix  # markdownlint with auto-fix
+pnpm run build         # production build to dist/
+pnpm run test          # Vitest (unit + build-output tests; build tests require dist/)
+pnpm run test:watch    # Vitest in watch mode
+pnpm run ci            # full CI suite locally (lint + format:check + markdownlint + check + build + test)
 ```
 
-Before every commit, run `npm run ci`. Resolve all errors before asking to commit.
+This project uses pnpm, pinned via the `packageManager` field in `package.json`.
+Before every commit, run `pnpm run ci`. Resolve all errors before asking to commit.
 
 ## Testing
 
@@ -27,26 +28,35 @@ Tests live in `tests/` and run with Vitest:
 
 - `tests/unit/` — unit tests for logic in `src/lib/` (e.g. timeline sorting).
   Extract nontrivial logic out of `.astro` frontmatter into `src/lib/` so it is testable.
-- `tests/build/` — assertions against the built HTML in `dist/` (run `npm run build` first):
+- `tests/build/` — assertions against the built HTML in `dist/` (run `pnpm run build` first):
   page titles and meta, canonical URLs, internal-link resolution, external-link
   `rel="noopener noreferrer"`, image alt text, and HTML validity (`html-validate`).
   `tests/build/helpers.ts` holds the page manifest (`PAGES`) — update it when adding a page.
 
 ## Dependency Management
 
-- Use `npm install --save-dev --ignore-scripts` for new dev dependencies.
-- Use `npm install --ignore-scripts` for new runtime dependencies.
-- The `--ignore-scripts` flag prevents npm lifecycle scripts from running during install.
-- After adding dependencies, run `npm audit` to check for vulnerabilities.
+- Package manager is pnpm, pinned via the `packageManager` field in `package.json`.
+  Install it with `corepack enable` or `npm i -g pnpm`.
+- Use `pnpm add -D --ignore-scripts` for new dev dependencies.
+- Use `pnpm add --ignore-scripts` for new runtime dependencies.
+- The `--ignore-scripts` flag prevents lifecycle scripts from running during install.
+- After adding dependencies, run `pnpm audit` to check for vulnerabilities.
+- Dependency overrides live in `pnpm-workspace.yaml` under `overrides:` (pnpm no longer
+  reads the `pnpm.*` fields from `package.json`). `yaml` is pinned there for a security fix.
+- `sharp` is a direct dependency, not just Astro's optional one: Astro's build-time image
+  optimization does a bare `import('sharp')` from a bundled chunk that resolves at the
+  project root. npm's flat layout hoisted it there implicitly; pnpm's strict layout requires
+  it declared. Keep its version aligned with Astro's `optionalDependencies.sharp` range.
 - Dependabot (`.github/dependabot.yml`) opens weekly grouped update PRs; minor/patch PRs
-  auto-merge once CI passes (`.github/workflows/dependabot-auto-merge.yml`).
+  auto-merge once CI passes (`.github/workflows/dependabot-auto-merge.yml`). Its `npm`
+  ecosystem reads `pnpm-lock.yaml`.
 
 ## Security
 
 - GitHub Actions are pinned to full commit SHAs with a `# vX.Y.Z` comment. When bumping,
   update both the SHA and the comment (Dependabot does this automatically).
 - All workflows declare least-privilege `permissions:` blocks.
-- CI fails on `npm audit --audit-level=high`; CodeQL and dependency-review run on PRs;
+- CI fails on `pnpm audit --audit-level high`; CodeQL and dependency-review run on PRs;
   a scheduled weekly audit (`security-audit.yml`) catches drift between commits.
 - HTTP security headers (CSP, HSTS, etc.) are set in `public/_headers` (Cloudflare Pages).
   The CSP has no `script-src` — adding client-side JavaScript requires updating it.
@@ -123,5 +133,5 @@ evaluate whether the rule or the pattern should change.
 
 ## Commit Policy
 
-Never run `git commit` without explicit user approval. After `npm run ci` passes, stop and ask.
+Never run `git commit` without explicit user approval. After `pnpm run ci` passes, stop and ask.
 Do not add `Co-Authored-By: Claude` lines to commit messages.

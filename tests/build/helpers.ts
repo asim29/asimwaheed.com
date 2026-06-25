@@ -28,7 +28,7 @@ export const PAGES = [
 export function assertDistExists(): void {
   if (!existsSync(DIST)) {
     throw new Error(
-      "dist/ not found — run `npm run build` before `npm run test`."
+      "dist/ not found — run `pnpm run build` before `pnpm run test`."
     );
   }
 }

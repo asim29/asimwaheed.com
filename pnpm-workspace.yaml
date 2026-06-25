@@ -1,0 +1,6 @@
+# pnpm settings for this single-package project. pnpm no longer reads the
+# `pnpm.*` fields from package.json (as of pnpm 10+), so dependency overrides
+# live here. This pins every resolution of `yaml` to a version carrying the
+# upstream security fix; npm enforced the same via package.json `overrides`.
+overrides:
+  yaml: ^2.9.0
