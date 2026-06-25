@@ -2,6 +2,7 @@
   "name": "asimwaheed.com",
   "type": "module",
   "version": "0.0.1",
+  "packageManager": "pnpm@11.9.0",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -16,7 +17,7 @@
     "markdownlint:fix": "markdownlint --fix '**/*.md' --ignore-path .gitignore",
     "test": "vitest run",
     "test:watch": "vitest",
-    "ci": "npm run lint && npm run format:check && npm run markdownlint && npm run check && npm run build && npm run test",
+    "ci": "pnpm run lint && pnpm run format:check && pnpm run markdownlint && pnpm run check && pnpm run build && pnpm run test",
     "prepare": "husky"
   },
   "engines": {
@@ -25,7 +26,8 @@
   "dependencies": {
     "@astrojs/markdown-remark": "^7.2.0",
     "@astrojs/sitemap": "^3.7.3",
-    "astro": "^7.0.2"
+    "astro": "^7.0.2",
+    "sharp": "^0.34.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.8",
@@ -46,9 +48,6 @@
     "typescript-eslint": "^8.62.0",
     "vitest": "^4.1.9",
     "zod": "^4.4.3"
-  },
-  "overrides": {
-    "yaml": "^2.9.0"
   },
   "lint-staged": {
     "*.{ts,astro,js,mjs}": [
