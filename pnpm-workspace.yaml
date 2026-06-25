@@ -1,6 +1,19 @@
 # pnpm settings for this single-package project. pnpm no longer reads the
-# `pnpm.*` fields from package.json (as of pnpm 10+), so dependency overrides
-# live here. This pins every resolution of `yaml` to a version carrying the
-# upstream security fix; npm enforced the same via package.json `overrides`.
+# `pnpm.*` fields from package.json (as of pnpm 10+), so these live here.
+
+# Pin every resolution of `yaml` to a version carrying the upstream security
+# fix; npm enforced the same via package.json `overrides`.
 overrides:
   yaml: ^2.9.0
+
+# pnpm 11 blocks dependency build scripts by default and fails the install
+# unless each package with one is explicitly decided via `allowBuilds`
+# (the successor to onlyBuiltDependencies / ignoredBuiltDependencies, both
+# removed in pnpm 11). We decline both: their prebuilt platform binaries ship
+# as separate `@img/sharp-*` and `@esbuild/*` packages already in the lockfile,
+# so the build output is byte-identical without running these scripts. This
+# keeps the project's --ignore-scripts posture intact on the deploy host, where
+# Cloudflare runs a bare `pnpm install` we can't pass flags to.
+allowBuilds:
+  esbuild: false
+  sharp: false
