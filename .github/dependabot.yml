@@ -7,6 +7,12 @@ updates:
       day: "monday"
       time: "09:00"
       timezone: "America/Toronto"
+    # Matches pnpm 11's default minimumReleaseAge (1440 minutes / 1 day), a
+    # supply-chain guard that refuses to install packages published too
+    # recently. Without this, Dependabot can open a PR for a version pnpm
+    # itself won't accept yet, failing CI until the cutoff passes on its own.
+    cooldown:
+      default-days: 1
     groups:
       minor-and-patch:
         applies-to: version-updates
