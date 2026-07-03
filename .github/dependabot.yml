@@ -28,3 +28,12 @@ updates:
       day: "monday"
       time: "09:00"
       timezone: "America/Toronto"
+    # codeql.yml pins github/codeql-action/init and .../analyze separately;
+    # Dependabot treats each action path as its own dependency. Ungrouped,
+    # a release can arrive as two independent PRs that merge out of order,
+    # pairing init and analyze from different versions — the CodeQL CLI
+    # then refuses to run, since it requires both to match exactly.
+    groups:
+      codeql-action:
+        patterns:
+          - "github/codeql-action/*"
