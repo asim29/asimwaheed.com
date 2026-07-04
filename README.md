@@ -5,9 +5,10 @@ static output, no client-side JavaScript — and deployed on Cloudflare Pages.
 
 ## Development
 
-Requires Node.js >= 24 and [pnpm](https://pnpm.io). The pnpm version is pinned
-via the `packageManager` field in `package.json`; `corepack enable` will use it
-automatically, or install pnpm globally (`npm i -g pnpm`).
+Requires Node.js >= 24 and [pnpm](https://pnpm.io). The Node major is pinned in
+`.nvmrc` (`nvm use` picks it up, and CI reads the same file); the pnpm version is
+pinned via the `packageManager` field in `package.json`, so `corepack enable`
+will use it automatically, or install pnpm globally (`npm i -g pnpm`).
 
 ```zsh
 pnpm install --frozen-lockfile --ignore-scripts
@@ -24,13 +25,14 @@ and the built HTML in `dist/`.
 
 ## CI & Security
 
-GitHub Actions run lint/typecheck/build/test, `pnpm audit`, CodeQL, and dependency
-review on every PR, plus a weekly scheduled audit. Dependabot opens grouped weekly
-update PRs; minor/patch updates auto-merge once CI passes. Actions are pinned to
-commit SHAs, and HTTP security headers ship via `public/_headers`.
+GitHub Actions run lint/typecheck/build/test and `pnpm audit` on every push and PR,
+with dependency review on PRs and CodeQL when JS/TS/Astro source changes. Dependabot
+opens grouped weekly update PRs; minor/patch updates auto-merge once CI passes.
+Actions are pinned to commit SHAs (enforced by the repository's SHA-pinning setting),
+and HTTP security headers ship via `public/_headers`.
 
 ## License
 
-Code is MIT-licensed. Site content — prose, publications data, photographs,
-signature, and CV — is copyright Asim Waheed, all rights reserved.
-See [LICENSE](LICENSE).
+Code is MIT-licensed; see [LICENSE](LICENSE). Site content — prose, publications
+data, photographs, signature, and CV — is copyright Asim Waheed, all rights
+reserved, as recorded in [NOTICE](NOTICE).

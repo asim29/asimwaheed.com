@@ -50,16 +50,35 @@ Tests live in `tests/` and run with Vitest:
 - Dependabot (`.github/dependabot.yml`) opens weekly grouped update PRs; minor/patch PRs
   auto-merge once CI passes (`.github/workflows/dependabot-auto-merge.yml`). Its `npm`
   ecosystem reads `pnpm-lock.yaml`.
+- The Node.js major version is pinned in `.nvmrc`, read by both CI (`node-version-file`) and a
+  local `nvm use` — one source of truth. Bump it there when moving to a new LTS line; keep it
+  consistent with the `engines.node` floor in `package.json`.
 
 ## Security
 
 - GitHub Actions are pinned to full commit SHAs with a `# vX.Y.Z` comment. When bumping,
-  update both the SHA and the comment (Dependabot does this automatically).
+  update both the SHA and the comment (Dependabot does this automatically). The repository's
+  Actions setting enforces SHA-pinning, so an unpinned tag or branch ref is rejected.
 - All workflows declare least-privilege `permissions:` blocks.
-- CI fails on `pnpm audit --audit-level high`; CodeQL and dependency-review run on PRs;
-  a scheduled weekly audit (`security-audit.yml`) catches drift between commits.
+- CI fails on `pnpm audit --audit-level high` on every push and PR; dependency-review runs on
+  PRs. Dependabot vulnerability alerts and security updates watch the same advisory database
+  continuously, which is why there is no separate scheduled audit workflow.
+- CodeQL (`codeql.yml`) is advisory, not a required check, and is path-filtered to run only when
+  JS/TS/Astro source changes. See the merge-gate note for why it must stay advisory.
 - HTTP security headers (CSP, HSTS, etc.) are set in `public/_headers` (Cloudflare Pages).
   The CSP has no `script-src` — adding client-side JavaScript requires updating it.
+
+### Merge gate (branch ruleset)
+
+The `main-required-checks` ruleset (repo Settings → Rules) requires exactly one status check,
+`ci` — the job id in `.github/workflows/ci.yml`. GitHub references required checks by string
+with no way to import the name, so the link lives in two places at once:
+
+- Rename the `ci` job and you must update the ruleset's required-check context, or the gate
+  silently stops enforcing (it waits on a check that never reports).
+- Only a check that runs on _every_ PR may be required. A path-filtered or otherwise skippable
+  workflow (CodeQL) must stay advisory: a required check that gets skipped never reports success
+  and blocks the PR forever.
 
 ## Content Model
 
