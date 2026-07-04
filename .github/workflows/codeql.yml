@@ -1,12 +1,30 @@
 name: CodeQL
 
+# CodeQL is advisory here: it is NOT one of the required status checks in the
+# "main-required-checks" ruleset. That is deliberate — a required check that is
+# skipped by the path filter below would never report and would block every
+# content-only PR forever. Keeping it advisory lets us path-filter freely.
+#
+# The path filter runs CodeQL only when first-party JS/TS/Astro source (or this
+# workflow) changes, so the common case — editing Markdown content — skips it.
+# There is no schedule: scans are event-driven on relevant code changes rather
+# than on a fixed weekly cadence.
 on:
   push:
     branches: [main]
+    paths: &code-paths
+      - "**/*.ts"
+      - "**/*.tsx"
+      - "**/*.js"
+      - "**/*.jsx"
+      - "**/*.cjs"
+      - "**/*.mjs"
+      - "**/*.astro"
+      - "tsconfig.json"
+      - ".github/workflows/codeql.yml"
   pull_request:
     branches: [main]
-  schedule:
-    - cron: "26 8 * * 1"
+    paths: *code-paths
 
 permissions:
   contents: read

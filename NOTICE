@@ -1,0 +1,10 @@
+asimwaheed.com
+Copyright (c) 2026 Asim Waheed
+
+The source code of this repository — layouts, components, styles,
+configuration, and tests — is licensed under the MIT License. See LICENSE.
+
+The site content is NOT covered by the MIT License. All prose, publications
+data, photographs, signature, and CV — everything under src/content/,
+src/pages/*.md, src/assets/, and public/cv/ — is copyright Asim Waheed,
+all rights reserved.
