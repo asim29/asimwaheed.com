@@ -1,15 +1,14 @@
-/* index.css */
-
-/* Contain the float without a clearfix pseudo-element */
+/* flow-root contains the float without a clearfix pseudo-element. */
 .intro {
   display: flow-root;
 }
 
-/* Desktop: photo floats right, text wraps */
+/* --intro-photo-size is set inline by index.astro from INTRO_PHOTO_SIZE, which
+   also feeds the <Image> width/height. Do not hardcode it here. */
 .intro-photo {
   float: right;
-  width: 220px;
-  height: 220px;
+  width: var(--intro-photo-size);
+  height: var(--intro-photo-size);
   object-fit: cover;
   border-radius: var(--radius-md);
   margin-left: var(--space-6);
@@ -18,7 +17,6 @@
   box-shadow: 0 0 0 1px var(--color-border-subtle);
 }
 
-/* Mobile: photo on top */
 @media (width <= 768px) {
   .intro-photo {
     float: none;

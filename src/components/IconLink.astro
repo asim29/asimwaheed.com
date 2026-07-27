@@ -1,5 +1,13 @@
 ---
-const { href, ariaLabel, icon: Icon, size = 24, external = true } = Astro.props;
+import { ICON_SIZE } from "../constants/layout";
+
+const {
+  href,
+  ariaLabel,
+  icon: Icon,
+  size = ICON_SIZE,
+  external = true,
+} = Astro.props;
 
 import "./IconLink.css";
 

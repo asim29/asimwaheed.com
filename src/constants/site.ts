@@ -2,7 +2,13 @@
 
 export const SITE = {
   name: "Asim Waheed",
+  // Home-screen label, where the full name is usually truncated.
+  shortName: "Asim",
   homeHref: "/",
+
+  // Shown in the footer. Tracks content revisions rather than deploys, so it is
+  // set by hand — a build date would call a dependency bump a content update.
+  lastUpdated: "January 2026",
 
   email: "contact@asimwaheed.com",
 

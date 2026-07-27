@@ -5,3 +5,8 @@ public/
 
 # machine-generated lockfile — never hand-format
 pnpm-lock.yaml
+
+# generated upstream by BrandGuidelines/tools/palette and copied in verbatim.
+# Formatting it here would put every future re-copy permanently in diff, so the
+# file is left exactly as the generator emits it.
+src/styles/tokens.css

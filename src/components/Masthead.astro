@@ -7,8 +7,10 @@ import MailIcon from "../icons/mail.svg";
 import GitHubIcon from "../icons/github.svg";
 import LinkedInIcon from "../icons/linkedin.svg";
 import ScholarIcon from "../icons/graduation-cap.svg";
+import ContrastIcon from "../icons/contrast.svg";
 
-import { CONTACT_ARIA_LABELS } from "../constants/aria";
+import { CONTACT_ARIA_LABELS, UI_ARIA_LABELS } from "../constants/aria";
+import { ICON_SIZE } from "../constants/layout";
 import { SITE } from "../constants/site";
 
 const pathname = Astro.url.pathname.replace(/\/$/, "");
@@ -48,6 +50,17 @@ const pathname = Astro.url.pathname.replace(/\/$/, "");
         ariaLabel={CONTACT_ARIA_LABELS.linkedin}
         icon={LinkedInIcon}
       />
+
+      <!-- Hidden until the inline theme script marks the document ready, so it
+           never appears as a control that cannot work. See src/constants/theme.ts -->
+      <button
+        type="button"
+        class="theme-toggle"
+        data-theme-toggle
+        aria-label={UI_ARIA_LABELS.themeToggle}
+      >
+        <ContrastIcon width={ICON_SIZE} height={ICON_SIZE} />
+      </button>
     </div>
   </div>
 

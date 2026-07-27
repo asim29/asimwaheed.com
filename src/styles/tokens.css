@@ -1,133 +1,257 @@
+/* GENERATED FILE — copied verbatim from BrandGuidelines/css/tokens.css.
+   Do not hand-edit: change the OKLCH seed in BrandGuidelines/tools/palette,
+   regenerate with `--apply`, then re-copy. Edits here are lost on regeneration.
+   Listed in .prettierignore so re-copying never lands in diff. */
 :root {
-  /* ─────────────────────────────
-     Raw palette — Neutrals
-     ───────────────────────────── */
-  --color-mist-grey: #f7f8fa;
-  --color-deep-slate: #1e293b;
-  --color-ash: #d1d5db;
-  --color-charcoal: #374151;
+  /* Primitives - raw ramps */
+  --color-slate-50: #F5F6F7;
+  --color-slate-100: #E9EBEE;
+  --color-slate-200: #D5D8DE;
+  --color-slate-300: #BBC0C9;
+  --color-slate-400: #A0A7B4;
+  --color-slate-500: #858FA0;
+  --color-slate-600: #6B778C;
+  --color-slate-700: #526078;
+  --color-slate-800: #3C4A63;
+  --color-slate-900: #2A364E;
+  --color-slate-950: #1E2A40;
 
-  /* ─────────────────────────────
-     Raw palette — Accents
-     ───────────────────────────── */
-  --color-midnight-blue-fill: #2646a6;
-  --color-midnight-blue-text: #1e326f;
+  --color-paper-50: #FAF5ED;
+  --color-paper-100: #EFEAE2;
+  --color-paper-200: #DCD7CF;
+  --color-paper-300: #C4C0B8;
+  --color-paper-400: #AAA69E;
+  --color-paper-500: #928E87;
+  --color-paper-600: #7A766E;
+  --color-paper-700: #635F58;
+  --color-paper-800: #4D4943;
+  --color-paper-900: #3A3630;
+  --color-paper-950: #2D2A24;
 
-  --color-teal-fill: #13837f;
-  --color-teal-text: #0f6865;
+  --color-blue-50: #EFF6FF;
+  --color-blue-100: #DDEBFF;
+  --color-blue-200: #C0D8FF;
+  --color-blue-300: #9DBEFF;
+  --color-blue-400: #76A1FF;
+  --color-blue-500: #5282FF;
+  --color-blue-600: #3966F5;
+  --color-blue-700: #2D53C6;
+  --color-blue-800: #22409C;
+  --color-blue-900: #172E77;
+  --color-blue-950: #10235F;
 
-  --color-amber-fill: #f2b441;
-  --color-amber-text: #6c511d;
+  --color-teal-50: #EFF8F7;
+  --color-teal-100: #DDF0EE;
+  --color-teal-200: #BCE1DE;
+  --color-teal-300: #8CCFCB;
+  --color-teal-400: #4ABBB6;
+  --color-teal-500: #00A5A0;
+  --color-teal-600: #008B87;
+  --color-teal-700: #00716D;
+  --color-teal-800: #005855;
+  --color-teal-900: #004240;
+  --color-teal-950: #003432;
 
-  --color-raspberry-fill: #c94964;
-  --color-raspberry-text: #96364b;
+  --color-aqua-50: #ECF9F8;
+  --color-aqua-100: #D6F2F1;
+  --color-aqua-200: #ADE5E3;
+  --color-aqua-300: #6AD4D3;
+  --color-aqua-400: #00C1C1;
+  --color-aqua-500: #00A6A6;
+  --color-aqua-600: #008B8A;
+  --color-aqua-700: #007070;
+  --color-aqua-800: #005858;
+  --color-aqua-900: #004242;
+  --color-aqua-950: #003434;
 
-  /* ─────────────────────────────
-     Raw palette — Semantic
-     ───────────────────────────── */
-  --color-emerald: #1a6342;
-  --color-crimson: #ad2c2c;
+  --color-green-50: #F0F8F3;
+  --color-green-100: #DFF0E6;
+  --color-green-200: #C0E2CE;
+  --color-green-300: #95D0AE;
+  --color-green-400: #5DBD8C;
+  --color-green-500: #26A76F;
+  --color-green-600: #008F54;
+  --color-green-700: #007541;
+  --color-green-800: #005C30;
+  --color-green-900: #004522;
+  --color-green-950: #003718;
 
-  /* ─────────────────────────────
-     Semantic roles — Site usage
-     ───────────────────────────── */
-  --color-bg-default: var(--color-mist-grey);
-  --color-bg-muted: var(--color-ash);
+  --color-amber-50: #FCF5EA;
+  --color-amber-100: #F8E9D1;
+  --color-amber-200: #F2D3A3;
+  --color-amber-300: #EBB65B;
+  --color-amber-400: #DE9600;
+  --color-amber-500: #C08000;
+  --color-amber-600: #A06A00;
+  --color-amber-700: #835500;
+  --color-amber-800: #674100;
+  --color-amber-900: #4E2F00;
+  --color-amber-950: #3E2400;
 
-  --color-text-primary: var(--color-deep-slate);
-  --color-text-secondary: var(--color-charcoal);
-  --color-text-muted: var(--color-charcoal);
+  --color-raspberry-50: #FDF3F4;
+  --color-raspberry-100: #FBE5E7;
+  --color-raspberry-200: #F7CBD0;
+  --color-raspberry-300: #F2AAB3;
+  --color-raspberry-400: #EB8292;
+  --color-raspberry-500: #DA6177;
+  --color-raspberry-600: #C3415E;
+  --color-raspberry-700: #A72648;
+  --color-raspberry-800: #8B0534;
+  --color-raspberry-900: #6D0023;
+  --color-raspberry-950: #59001A;
 
-  /* Abstract accent slots */
-  --color-accent-1: var(--color-midnight-blue-fill);
-  --color-accent-1-text: var(--color-midnight-blue-text);
+  --color-red-50: #FDF3F2;
+  --color-red-100: #FBE6E2;
+  --color-red-200: #F6CDC7;
+  --color-red-300: #F1ACA2;
+  --color-red-400: #EA867A;
+  --color-red-500: #DA665A;
+  --color-red-600: #C2473D;
+  --color-red-700: #A72D26;
+  --color-red-800: #8B1110;
+  --color-red-900: #6D0001;
+  --color-red-950: #590000;
 
-  --color-accent-2: var(--color-teal-fill);
-  --color-accent-2-text: var(--color-teal-text);
+  --color-violet-50: #FAF2FF;
+  --color-violet-100: #F5E3FF;
+  --color-violet-200: #ECC7FF;
+  --color-violet-300: #E0A1FF;
+  --color-violet-400: #D175FF;
+  --color-violet-500: #C33AFF;
+  --color-violet-600: #AC00F8;
+  --color-violet-700: #8D00CC;
+  --color-violet-800: #6F00A2;
+  --color-violet-900: #54007D;
+  --color-violet-950: #430065;
 
-  --color-accent-3: var(--color-amber-fill);
-  --color-accent-3-text: var(--color-amber-text);
+  /* Semantic roles - light theme */
+  --color-bg: var(--color-paper-50);
+  --color-surface: var(--color-slate-200);
+  --color-surface-muted: var(--color-slate-300);
+  --color-text: var(--color-slate-950);
+  --color-text-muted: var(--color-slate-700);
+  --color-text-subtle: var(--color-slate-600);
+  --color-border: var(--color-slate-300);
+  --color-border-subtle: var(--color-slate-200);
+  --color-border-strong: var(--color-slate-900);
+  --color-link: var(--color-teal-700);
+  --color-link-hover: var(--color-aqua-600);
+  --color-emphasis: var(--color-violet-800);
+  --color-emphasis-fill: var(--color-violet-800);
+  --color-emphasis-text: var(--color-violet-800);
+  --color-on-emphasis: var(--color-paper-50);
+  --color-spark: var(--color-aqua-500);
+  --color-success: var(--color-green-800);
+  --color-error: var(--color-red-700);
+  --color-warning: var(--color-amber-600);
+  --color-highlight: var(--color-amber-300);
+  --color-wash-neutral: var(--color-slate-200);
+  --color-wash-info: var(--color-blue-100);
+  --color-wash-seed: var(--color-amber-100);
 
-  --color-accent-4: var(--color-raspberry-fill);
-  --color-accent-4-text: var(--color-raspberry-text);
-
-  --color-status-success: var(--color-emerald);
-  --color-status-error: var(--color-crimson);
-
-  /* ─────────────────────────────
-     Typography — Font families
-     ───────────────────────────── */
-  --font-sans:
-    "Source Sans 3", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Helvetica, Arial, sans-serif;
-
+  /* Typography - font families */
+  --font-sans: "Source Sans 3", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --font-serif: "Source Serif 4", Georgia, "Times New Roman", Times, serif;
-
-  --font-mono:
-    "JetBrains Mono", SFMono-Regular, Menlo, Monaco, Consolas,
+  --font-mono: "JetBrains Mono", SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
 
-  /* ─────────────────────────────
-     Typography — Font sizes
-     (modular, restrained)
-     ───────────────────────────── */
-  --font-size-xs: 0.75rem; /* 12px */
-  --font-size-sm: 0.875rem; /* 14px */
-  --font-size-md: 1rem; /* 16px */
-  --font-size-lg: 1.125rem; /* 18px */
-  --font-size-xl: 1.25rem; /* 20px */
-  --font-size-2xl: 1.5rem; /* 24px */
-  --font-size-3xl: 1.875rem; /* 30px */
-  --font-size-4xl: 2.25rem; /* 36px */
+  /* Typography - sizes */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
 
-  /* ─────────────────────────────
-     Typography — Font weights
-     ───────────────────────────── */
+  /* Typography - weights */
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
 
-  /* ─────────────────────────────
-     Typography — Line heights
-     ───────────────────────────── */
+  /* Typography - line heights */
   --line-height-tight: 1.25;
   --line-height-normal: 1.5;
   --line-height-relaxed: 1.65;
 
-  /* ─────────────────────────────
-     Spacing — 8px grid
-     ───────────────────────────── */
+  /* Spacing - 4px base, 8px grid */
   --space-0: 0;
-  --space-1: 0.25rem; /* 4px */
-  --space-2: 0.5rem; /* 8px */
-  --space-3: 0.75rem; /* 12px */
-  --space-4: 1rem; /* 16px */
-  --space-5: 1.5rem; /* 24px */
-  --space-6: 2rem; /* 32px */
-  --space-7: 3rem; /* 48px */
-  --space-8: 4rem; /* 64px */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
 
-  /* ─────────────────────────────
-     Radii — restrained tiers
-     ───────────────────────────── */
+  /* Radii */
   --radius-none: 0;
   --radius-sm: 2px;
   --radius-md: 4px;
   --radius-lg: 8px;
 
-  /* ─────────────────────────────
-     Max widths — content discipline
-     ───────────────────────────── */
-  --max-width-xs: 32rem; /* ~512px */
-  --max-width-sm: 40rem; /* ~640px */
-  --max-width-md: 48rem; /* ~768px */
-  --max-width-lg: 64rem; /* ~1024px */
+  /* Max widths */
+  --max-width-xs: 32rem;
+  --max-width-sm: 40rem;
+  --max-width-md: 48rem;
+  --max-width-lg: 64rem;
+}
 
-  /* ─────────────────────────────
-  Semantic roles — Borders / rules
-  ───────────────────────────── */
-  --color-border-subtle: var(--color-ash); /* quiet dividers, timelines */
-  --color-border-default: var(--color-charcoal); /* standard rules, outlines */
-  --color-border-strong: var(--color-deep-slate); /* emphasis, section breaks */
+/* Dark theme: follows the OS preference, or force with [data-theme] */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-bg: var(--color-slate-950);
+    --color-surface: var(--color-slate-900);
+    --color-surface-muted: var(--color-slate-800);
+    --color-text: var(--color-paper-100);
+    --color-text-muted: var(--color-slate-300);
+    --color-text-subtle: var(--color-slate-400);
+    --color-border: var(--color-slate-700);
+    --color-border-subtle: var(--color-slate-800);
+    --color-border-strong: var(--color-slate-500);
+    --color-link: var(--color-aqua-400);
+    --color-link-hover: var(--color-aqua-300);
+    --color-emphasis: var(--color-violet-400);
+    --color-emphasis-fill: var(--color-violet-600);
+    --color-emphasis-text: var(--color-violet-400);
+    --color-on-emphasis: var(--color-paper-50);
+    --color-spark: var(--color-aqua-400);
+    --color-success: var(--color-green-400);
+    --color-error: var(--color-red-400);
+    --color-warning: var(--color-amber-400);
+    --color-highlight: var(--color-amber-300);
+    --color-wash-neutral: var(--color-slate-800);
+    --color-wash-info: var(--color-blue-900);
+    --color-wash-seed: var(--color-amber-900);
+  }
+}
+
+[data-theme="dark"] {
+  --color-bg: var(--color-slate-950);
+  --color-surface: var(--color-slate-900);
+  --color-surface-muted: var(--color-slate-800);
+  --color-text: var(--color-paper-100);
+  --color-text-muted: var(--color-slate-300);
+  --color-text-subtle: var(--color-slate-400);
+  --color-border: var(--color-slate-700);
+  --color-border-subtle: var(--color-slate-800);
+  --color-border-strong: var(--color-slate-500);
+  --color-link: var(--color-aqua-400);
+  --color-link-hover: var(--color-aqua-300);
+  --color-emphasis: var(--color-violet-400);
+  --color-emphasis-fill: var(--color-violet-600);
+  --color-emphasis-text: var(--color-violet-400);
+  --color-on-emphasis: var(--color-paper-50);
+  --color-spark: var(--color-aqua-400);
+  --color-success: var(--color-green-400);
+  --color-error: var(--color-red-400);
+  --color-warning: var(--color-amber-400);
+  --color-highlight: var(--color-amber-300);
+  --color-wash-neutral: var(--color-slate-800);
+  --color-wash-info: var(--color-blue-900);
+  --color-wash-seed: var(--color-amber-900);
 }

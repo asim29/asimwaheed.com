@@ -3,16 +3,17 @@ import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HomeContent from "../content/home.md";
 import asimPhoto from "../assets/AsimPhoto.jpg";
+import { INTRO_PHOTO_SIZE } from "../constants/layout";
 import "./_index.css";
 ---
 
 <BaseLayout description="Research, writing, and work in progress.">
-  <div class="intro">
+  <div class="intro" style={`--intro-photo-size: ${INTRO_PHOTO_SIZE}px;`}>
     <Image
       src={asimPhoto}
       alt="Portrait of Asim Waheed"
-      width={220}
-      height={220}
+      width={INTRO_PHOTO_SIZE}
+      height={INTRO_PHOTO_SIZE}
       class="intro-photo"
     />
 

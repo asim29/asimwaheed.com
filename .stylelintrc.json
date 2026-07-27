@@ -4,10 +4,6 @@
     "custom-property-empty-line-before": null,
     "comment-empty-line-before": null,
     "declaration-empty-line-before": null,
-    "value-keyword-case": null,
-    "selector-pseudo-class-no-unknown": [
-      true,
-      { "ignorePseudoClasses": ["global"] }
-    ]
+    "value-keyword-case": null
   }
 }
