@@ -17,3 +17,20 @@ overrides:
 allowBuilds:
   esbuild: false
   sharp: false
+
+# Fail resolution when a peer range goes unmet, rather than warning and
+# resolving anyway. Several packages here embed the TypeScript compiler API —
+# typescript-eslint, and @astrojs/check via Volar — and each declares the
+# compiler versions it can actually consume. Unenforced, a compiler bump
+# outside those ranges resolves cleanly and fails much later with an error
+# naming neither the culprit nor the constraint: a TypeScript 7 bump dies in
+# `lint` on `Cannot read properties of undefined (reading 'Cjs')`, and hides
+# the second blocker behind the first, since CI stops at the earliest failure.
+# Enforced, resolution names every blocking package and the range it wants.
+#
+# Scope: this gates resolution — `pnpm install` that writes a lockfile,
+# `pnpm update`, `pnpm add`. It does NOT gate `pnpm install --frozen-lockfile`,
+# which skips the resolution step and so installs an already-written lockfile
+# regardless. CI runs frozen, and Dependabot writes its own lockfiles, so this
+# constrains local dependency work rather than incoming pull requests.
+strictPeerDependencies: true
