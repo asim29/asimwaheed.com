@@ -96,7 +96,7 @@ const pathname = Astro.url.pathname.replace(/\/$/, "");
           >Collaborate</a
         >
         <div class="menu-contact">
-          <a href="mailto:contact@asimwaheed.com">contact@asimwaheed.com</a>
+          <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
         </div>
       </nav>
     </details>
