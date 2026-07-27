@@ -118,3 +118,6 @@ fragments embedded in Astro pages, not standalone documents. Do not suppress mor
 
 Never run `git commit` without explicit user approval. After `pnpm run ci` passes, stop and ask.
 Do not add `Co-Authored-By: Claude` lines to commit messages.
+
+PR titles must follow Conventional Commits — see [CONTRIBUTING.md](CONTRIBUTING.md). PRs are
+squash-merged, so the title lands on `main` as the commit subject.
