@@ -4,13 +4,21 @@ import { fileURLToPath } from "node:url";
 
 import { parseHTML } from "linkedom";
 
+import astroConfig from "../../astro.config.mjs";
+import { SITE } from "../../src/constants/site";
+
 export const DIST = fileURLToPath(new URL("../../dist", import.meta.url));
 
-export const SITE_URL = "https://asimwaheed.com";
+if (!astroConfig.site) {
+  throw new Error(
+    "astro.config.mjs must define `site` for build tests to run."
+  );
+}
+export const SITE_URL = astroConfig.site;
 
 /** Every page the build is expected to produce, with its canonical title. */
 export const PAGES = [
-  { route: "/", file: "index.html", title: "Asim Waheed" },
+  { route: "/", file: "index.html", title: SITE.name },
   { route: "/work/", file: "work/index.html", title: "Work" },
   {
     route: "/publications/",

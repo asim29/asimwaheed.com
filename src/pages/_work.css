@@ -2,7 +2,7 @@
 
 .timeline {
   --timeline-gutter: var(--space-4);
-  --timeline-axis: 4px; /* corresponds to space-1 */
+  --timeline-axis: var(--space-1);
 
   margin-top: var(--space-6);
   display: grid;
@@ -28,9 +28,9 @@
 
 .timeline-marker {
   grid-column: 1;
-  width: 8px;
-  height: 8px;
-  margin-top: 0.25rem;
+  width: var(--space-2);
+  height: var(--space-2);
+  margin-top: var(--space-1);
   border-radius: 50%;
   background: var(--color-bg-default);
   border: 2px solid var(--color-border-default);
