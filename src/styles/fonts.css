@@ -1,0 +1,8 @@
+/* --font-brand-* are emitted by Astro's fonts API (see `fonts` in astro.config.mjs),
+   not declared in any stylesheet. This wiring lives here rather than in tokens.css
+   because that file is generated and shared with non-web media. */
+:root {
+  --font-serif: var(--font-brand-serif);
+  --font-sans: var(--font-brand-sans);
+  --font-mono: var(--font-brand-mono);
+}

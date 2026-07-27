@@ -1,9 +1,11 @@
 ---
 import "../styles/main.css";
+import { Font } from "astro:assets";
 import Masthead from "../components/Masthead.astro";
 import Footer from "../components/Footer.astro";
 import asimPhoto from "../assets/AsimPhoto.jpg";
 import { SITE } from "../constants/site";
+import { THEME_COLORS, THEME_INIT_SCRIPT } from "../constants/theme";
 
 interface Props {
   title?: string;
@@ -31,6 +33,15 @@ const ogImageURL = new URL(asimPhoto.src, Astro.site);
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+
+    {
+      /* First script in the document so a stored theme is applied before the
+        first paint. `is:inline` keeps it verbatim rather than bundling it to a
+        separate request, which is both what the CSP hash is computed over and
+        what makes it synchronous. */
+    }
+    <script is:inline set:html={THEME_INIT_SCRIPT} />
+
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -40,7 +51,31 @@ const ogImageURL = new URL(asimPhoto.src, Astro.site);
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <meta name="theme-color" content="#f7f8fa" />
+
+    {
+      /* Browser and OS chrome follow the OS preference rather than an explicit
+        toggle choice: a media-scoped meta cannot read data-theme, and syncing it
+        would mean growing the inline script for a cosmetic address-bar tint. */
+    }
+    <meta
+      name="theme-color"
+      content={THEME_COLORS.light}
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content={THEME_COLORS.dark}
+      media="(prefers-color-scheme: dark)"
+    />
+
+    {
+      /* Only the body face is preloaded. Preloading competes with other critical
+        resources, and headings can swap without shifting the reading column. */
+    }
+    <Font cssVariable="--font-brand-serif" preload />
+    <Font cssVariable="--font-brand-sans" />
+    <Font cssVariable="--font-brand-mono" />
+
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={SITE.name} />

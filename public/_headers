@@ -1,5 +1,10 @@
+# script-src carries the SHA-256 of the single inline theme script rather than
+# 'unsafe-inline', so only that exact script may run. The hash covers its bytes
+# verbatim: editing src/constants/theme.ts invalidates it. tests/build/theme.test.ts
+# recomputes the hash from the built HTML and fails with the replacement value.
+
 /*
-  Content-Security-Policy: default-src 'none'; img-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'none'; img-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; script-src 'sha256-XgzbI+tnJ+P+//vB8miGC6BPKORT0ik41a0f8ozjoBU='; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin

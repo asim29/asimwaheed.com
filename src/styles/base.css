@@ -1,7 +1,16 @@
-/* ─────────────────────────────
-   Base styles
-   Applies design tokens to HTML primitives
-   ───────────────────────────── */
+/* The two overrides are not redundant: without them, native UI (scrollbars, form
+   controls) keeps following the OS when the toggle pins a theme against it. */
+:root {
+  color-scheme: light dark;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+}
 
 html {
   font-size: 16px;
@@ -11,20 +20,16 @@ body {
   margin: 0;
   padding: 0;
 
-  background-color: var(--color-bg-default);
-  color: var(--color-text-primary);
+  background-color: var(--color-bg);
+  color: var(--color-text);
 
-  font-family: var(--font-sans);
+  font-family: var(--font-serif);
   font-size: var(--font-size-md);
-  line-height: var(--line-height-normal);
+  line-height: var(--line-height-relaxed);
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-/* ─────────────────────────────
-   Headings
-   ───────────────────────────── */
 
 h1,
 h2,
@@ -35,9 +40,10 @@ h6 {
   margin-top: 0;
   margin-bottom: var(--space-4);
 
+  font-family: var(--font-sans);
   font-weight: var(--font-weight-semibold);
   line-height: var(--line-height-tight);
-  color: var(--color-text-secondary);
+  color: var(--color-text);
 }
 
 h1 {
@@ -65,10 +71,6 @@ h6 {
   font-size: var(--font-size-md);
 }
 
-/* ─────────────────────────────
-   Text
-   ───────────────────────────── */
-
 p {
   margin-top: 0;
   margin-bottom: var(--space-5);
@@ -77,36 +79,43 @@ p {
 
 small {
   font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
+  color: var(--color-text-muted);
 }
 
-/* ─────────────────────────────
-   Links
-   ───────────────────────────── */
+/* No colour here: content mixes `**word**` and `**[word](/link)**`, so colouring
+   this renders identical markup two different ways. Overrides --color-emphasis-text. */
+strong,
+b {
+  font-weight: var(--font-weight-semibold);
+}
 
 a {
-  color: var(--color-accent-2-text);
+  color: var(--color-link);
   text-decoration: none;
 }
 
 a:hover {
+  color: var(--color-link-hover);
   text-decoration: underline;
 }
 
-/* ─────────────────────────────
-   Selection
-   ───────────────────────────── */
-
+/* The one sanctioned raw ramp step: amber is identical in both themes, so the ink
+   on it must not flip with the theme the way a semantic role would. */
 ::selection {
-  background-color: var(--color-accent-3);
-  color: var(--color-text-primary);
+  background-color: var(--color-highlight);
+  color: var(--color-slate-950);
 }
 
-/* ─────────────────────────────
-   IPA
-   ───────────────────────────── */
+code,
+pre,
+kbd,
+samp {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+}
+
 .ipa {
   font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
+  color: var(--color-text-muted);
   font-family: var(--font-mono);
 }

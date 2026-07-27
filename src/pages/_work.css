@@ -1,8 +1,12 @@
-/* work.css */
-
 .timeline {
   --timeline-gutter: var(--space-4);
   --timeline-axis: var(--space-1);
+  --timeline-rule-width: 2px;
+  --timeline-marker-size: var(--space-2);
+
+  /* Holds the widest rendered range ("Sep 2019 – Jun 2021") on one line; the
+     dates are nowrap, so too narrow a column overflows instead of wrapping. */
+  --timeline-date-width: 110px;
 
   margin-top: var(--space-6);
   display: grid;
@@ -16,9 +20,10 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  left: calc(var(--timeline-axis) - 1px);
-  width: 2px;
-  background: var(--color-border-default);
+  left: var(--timeline-axis);
+  transform: translateX(-50%);
+  width: var(--timeline-rule-width);
+  background: var(--color-border);
   z-index: 0;
 }
 
@@ -28,14 +33,15 @@
 
 .timeline-marker {
   grid-column: 1;
-  width: var(--space-2);
-  height: var(--space-2);
+  width: var(--timeline-marker-size);
+  height: var(--timeline-marker-size);
   margin-top: var(--space-1);
   border-radius: 50%;
-  background: var(--color-bg-default);
-  border: 2px solid var(--color-border-default);
+  background: var(--color-bg);
+  border: var(--timeline-rule-width) solid var(--color-border);
   justify-self: start;
-  margin-left: calc(var(--timeline-axis) - 6px);
+  margin-left: var(--timeline-axis);
+  transform: translateX(-50%);
   z-index: 1;
 }
 
@@ -43,24 +49,16 @@
   grid-column: 2;
   max-width: var(--max-width-md);
   display: grid;
-  grid-template-columns: 110px 1fr;
+  grid-template-columns: var(--timeline-date-width) 1fr;
   column-gap: var(--space-1);
   align-items: start;
 }
 
 .timeline-dates {
   font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
+  color: var(--color-text-muted);
   margin-bottom: 0;
   white-space: nowrap;
-}
-
-.timeline-content :global(p) {
-  margin: 0;
-}
-
-.timeline-content :global(p + p) {
-  margin-top: var(--space-3);
 }
 
 @media (width <= 520px) {
@@ -78,20 +76,32 @@
 .work-other h3 {
   margin-bottom: var(--space-3);
   font-size: var(--font-size-xl);
-  color: var(--color-text-secondary);
+  color: var(--color-text-muted);
 }
 
 .work-other p {
   margin-bottom: 0;
-  color: var(--color-text-secondary);
+  color: var(--color-text-muted);
 }
 
 .work-other ul {
   margin: 0;
-  padding-left: 1.2em;
+  padding-left: var(--space-5);
 }
 
 .work-other li {
   margin-bottom: var(--space-2);
-  color: var(--color-text-secondary);
+  color: var(--color-text-muted);
+}
+
+/* Two traps here. No `:global()` — this is a plain stylesheet, so Astro never
+   scopes it; `:global` reaches the browser as an unknown pseudo-class and silently
+   invalidates the whole rule. And these stay at the end of the file because
+   `p + p` outranks `.work-other p` above, which stylelint enforces. */
+.timeline-content p {
+  margin: 0;
+}
+
+.timeline-content p + p {
+  margin-top: var(--space-3);
 }

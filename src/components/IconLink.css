@@ -1,6 +1,5 @@
-/* Icon links (shared between Masthead & Footer) */
 .icon-link {
-  color: var(--color-text-secondary);
+  color: var(--color-text-muted);
   display: inline-flex;
   align-items: center;
 }

@@ -1,154 +1,118 @@
 # CLAUDE.md — asimwaheed.com
 
-## Workflow
-
-The primary commands are:
-
-```zsh
-pnpm run dev           # local dev server at localhost:4321
-pnpm run check         # TypeScript + Astro type check (astro check)
-pnpm run lint          # ESLint + Stylelint
-pnpm run lint:fix      # ESLint + Stylelint with auto-fix
-pnpm run format        # Prettier (write)
-pnpm run format:check  # Prettier (check only, used in CI)
-pnpm run markdownlint  # markdownlint on all .md files
-pnpm run markdownlint:fix  # markdownlint with auto-fix
-pnpm run build         # production build to dist/
-pnpm run test          # Vitest (unit + build-output tests; build tests require dist/)
-pnpm run test:watch    # Vitest in watch mode
-pnpm run ci            # full CI suite locally (lint + format:check + markdownlint + check + build + test)
-```
-
-This project uses pnpm, pinned via the `packageManager` field in `package.json`.
-Before every commit, run `pnpm run ci`. Resolve all errors before asking to commit.
+Static Astro site, zero client JS by default, deployed on Cloudflare Pages.
+Scripts are in `package.json`. `pnpm run dev` serves localhost:4321; `pnpm run ci` runs the
+full gate. Run `pnpm run ci` and resolve everything before asking to commit.
 
 ## Testing
 
-Tests live in `tests/` and run with Vitest:
+Vitest. `tests/unit/` covers logic in `src/lib/` — extract nontrivial logic out of `.astro`
+frontmatter so it is testable. `tests/build/` asserts against built HTML, so run `pnpm run build`
+first; `tests/build/helpers.ts` holds the `PAGES` manifest, which needs updating when a page is
+added.
 
-- `tests/unit/` — unit tests for logic in `src/lib/` (e.g. timeline sorting).
-  Extract nontrivial logic out of `.astro` frontmatter into `src/lib/` so it is testable.
-- `tests/build/` — assertions against the built HTML in `dist/` (run `pnpm run build` first):
-  page titles and meta, canonical URLs, internal-link resolution, external-link
-  `rel="noopener noreferrer"`, image alt text, and HTML validity (`html-validate`).
-  `tests/build/helpers.ts` holds the page manifest (`PAGES`) — update it when adding a page.
+`tokens.test.ts` and `theme.test.ts` guard drift that would otherwise ship silently, because CSS
+fails quietly — an undefined custom property renders as nothing instead of erroring. They check
+that hexes duplicated outside CSS still match `tokens.css`, that no stylesheet references an
+undefined token, and that the CSP hash matches the built script.
 
-## Dependency Management
+## Dependencies
 
-- Package manager is pnpm, pinned via the `packageManager` field in `package.json`.
-  Install it with `corepack enable` or `npm i -g pnpm`.
-- Use `pnpm add -D --ignore-scripts` for new dev dependencies.
-- Use `pnpm add --ignore-scripts` for new runtime dependencies.
-- The `--ignore-scripts` flag prevents lifecycle scripts from running during install.
-- After adding dependencies, run `pnpm audit` to check for vulnerabilities.
-- Dependency overrides live in `pnpm-workspace.yaml` under `overrides:` (pnpm no longer
-  reads the `pnpm.*` fields from `package.json`). `yaml` is pinned there for a security fix.
-- `sharp` is a direct dependency, not just Astro's optional one: Astro's build-time image
-  optimization does a bare `import('sharp')` from a bundled chunk that resolves at the
-  project root. npm's flat layout hoisted it there implicitly; pnpm's strict layout requires
-  it declared. Keep its version aligned with Astro's `optionalDependencies.sharp` range.
-- Dependabot (`.github/dependabot.yml`) opens weekly grouped update PRs; minor/patch PRs
-  auto-merge once CI passes (`.github/workflows/dependabot-auto-merge.yml`). Its `npm`
+- Install with `--ignore-scripts` (`pnpm add -D --ignore-scripts`), then `pnpm audit`.
+- Overrides live in `pnpm-workspace.yaml` under `overrides:` — pnpm no longer reads `pnpm.*`
+  from `package.json`. `yaml` is pinned there for a security fix.
+- `sharp` is a direct dependency, not just Astro's optional one: Astro's image optimization does
+  a bare `import('sharp')` from a bundled chunk resolving at the project root, which npm's flat
+  layout hoisted implicitly and pnpm's strict layout does not. Keep it aligned with Astro's
+  `optionalDependencies.sharp` range.
+- Node's major version is pinned in `.nvmrc`, read by CI and `nvm use`. Keep it consistent with
+  the `engines.node` floor.
+- Dependabot opens weekly grouped PRs and auto-merges minor/patch once CI passes. Its `npm`
   ecosystem reads `pnpm-lock.yaml`.
-- The Node.js major version is pinned in `.nvmrc`, read by both CI (`node-version-file`) and a
-  local `nvm use` — one source of truth. Bump it there when moving to a new LTS line; keep it
-  consistent with the `engines.node` floor in `package.json`.
 
 ## Security
 
-- GitHub Actions are pinned to full commit SHAs with a `# vX.Y.Z` comment. When bumping,
-  update both the SHA and the comment (Dependabot does this automatically). The repository's
-  Actions setting enforces SHA-pinning, so an unpinned tag or branch ref is rejected.
-- All workflows declare least-privilege `permissions:` blocks.
-- CI fails on `pnpm audit --audit-level high` on every push and PR; dependency-review runs on
-  PRs. Dependabot vulnerability alerts and security updates watch the same advisory database
-  continuously, which is why there is no separate scheduled audit workflow.
-- CodeQL (`codeql.yml`) is advisory, not a required check, and is path-filtered to run only when
-  JS/TS/Astro source changes. See the merge-gate note for why it must stay advisory.
-- HTTP security headers (CSP, HSTS, etc.) are set in `public/_headers` (Cloudflare Pages).
-  The CSP has no `script-src` — adding client-side JavaScript requires updating it.
+- Actions are pinned to full commit SHAs with a `# vX.Y.Z` comment; the repo setting rejects
+  unpinned refs. Bump both the SHA and the comment.
+- Workflows declare least-privilege `permissions:`. CI fails on `pnpm audit --audit-level high`.
+- Headers are in `public/_headers`. `script-src` allowlists the SHA-256 of the single inline theme
+  script instead of `'unsafe-inline'`. **The hash covers the script's bytes verbatim, so editing
+  `THEME_INIT_SCRIPT` invalidates it and the theme silently stops applying in production.**
+  `tests/build/theme.test.ts` recomputes it and fails with the replacement value.
+- Self-hosted fonts need no CSP change — same origin under `font-src 'self'`, and their
+  `@font-face` lands in an inline `<style>` already covered by `style-src`.
 
-### Merge gate (branch ruleset)
+### Merge gate
 
-The `main-required-checks` ruleset (repo Settings → Rules) requires exactly one status check,
-`ci` — the job id in `.github/workflows/ci.yml`. GitHub references required checks by string
-with no way to import the name, so the link lives in two places at once:
+The `main-required-checks` ruleset requires exactly one check, `ci` — the job id in
+`.github/workflows/ci.yml`. GitHub matches required checks by string, so renaming that job
+silently disables the gate: it waits on a check that never reports. For the same reason only a
+check that runs on _every_ PR may be required, which is why path-filtered CodeQL stays advisory.
 
-- Rename the `ci` job and you must update the ruleset's required-check context, or the gate
-  silently stops enforcing (it waits on a check that never reports).
-- Only a check that runs on _every_ PR may be required. A path-filtered or otherwise skippable
-  workflow (CodeQL) must stay advisory: a required check that gets skipped never reports success
-  and blocks the PR forever.
+## Content
 
-## Content Model
+Lives in `src/content/`, schema in `src/content.config.ts`. Markdown pages in `src/pages/*.md`
+set their layout via a `layout` frontmatter key.
 
-Content lives in `src/content/` as Markdown (`.md`) or JSON (`.json`) files.
+`src/content/work/*.md` carries a `kind` field — `intro` renders above the timeline, `other`
+below, `timeline` is an entry with `start`/`end`/`title`. Sorted descending by `end`.
 
-### Markdown pages (`src/pages/*.md`)
+## CSS
 
-Pages with YAML frontmatter. The `layout` key specifies the Astro layout:
+Consume tokens for every color, spacing, and typography value; no raw hex or magic numbers in
+component CSS.
 
-```yaml
----
-layout: ../layouts/BaseLayout.astro
-title: Page Title
----
-```
+**`src/styles/tokens.css` is generated — never hand-edit it.** It is copied verbatim from
+`BrandGuidelines/css/tokens.css`, itself emitted from OKLCH seeds by `BrandGuidelines/tools/palette`
+with contrast verified. To change a color, edit the seed, regenerate with `--apply`, and re-copy
+the file with its provenance header. It is in `.prettierignore` so re-copying never lands in diff.
 
-### Work timeline (`src/content/work/*.md`)
+Two token layers: primitive ramps (`50`→`950` on one perceptual lightness scale) and semantic
+roles (`--color-text`, `--color-link`, …). **Consume roles, not ramp steps** — only roles carry
+dark values, so referencing `--color-violet-800` opts out of the dark theme. The one sanctioned
+exception is `::selection`, which pins `--color-slate-950` because amber is identical in both
+themes and its ink must not flip.
 
-Each file has a `kind` frontmatter field:
+**Colour means "interactive"; weight means "important".** Links take `--color-link`; `<strong>`
+is weight-only. Content mixes `**word**` and `**[word](/link)**`, so colouring `strong` renders
+identical markup two different ways and puts unclickable coloured words beside clickable ones.
+The web palette therefore omits `--color-emphasis-text`, which is written for documents and slides
+where nothing competes for colour.
 
-- `kind: intro` — introductory prose rendered above the timeline
-- `kind: other` — a section rendered below the timeline
-- `kind: timeline` (or numeric prefix) — a timeline entry with `start`, `end`, `title` fields
+**Orchid is currently unused here, and that is deliberate — do not add it back ad hoc.** Prose
+emphasis, hairline rules, all-headings, and chrome were each built and rejected on review. A
+proposal needs to be one sentence applicable to elements that don't exist yet, recur in a fixed
+position on every page, and have enough visual mass to read as a hue.
 
-Rendered by `src/pages/work.astro`. Sorted descending by `end` date.
+Dark theme: `prefers-color-scheme` by default, overridden by `[data-theme]` on `<html>` from the
+script in `src/constants/theme.ts`. Component CSS needs no light/dark branches. `color-scheme`
+lives in `base.css` so native UI follows a pinned theme.
 
-### Publications (`src/content/publications/*.json`)
+Not every literal is a defect — a one-off with no shared decision behind it beats a token used
+once. Breakpoints stay literal: `var()` is invalid in a `@media` prelude.
 
-Schema defined in `src/content/config.ts`:
+Fonts are self-hosted by Astro's fonts API (`fonts` in `astro.config.mjs`), which subsets and
+emits `@font-face` plus metric-matched fallbacks at build time. `src/styles/fonts.css` points the
+font tokens at Astro's generated variables, kept out of the generated file on purpose.
 
-- `title`, `authors`, `venue`, `year` are required
-- `links` is optional (`{ paper, arxiv, ... }`)
+## Astro
 
-Rendered by `src/pages/publications.astro`.
+- One script exists: the theme initializer in `src/constants/theme.ts`, admitted because CSS has
+  no storage and cannot persist a theme across page loads. It is dependency-free and degrades
+  cleanly — `prefers-color-scheme` needs no JS, and the toggle stays hidden until the script
+  reveals it. A second script means updating the CSP hash.
+- `BaseLayout.astro` owns global HTML. Config lives in `src/constants/` — `site.ts` (nav, social,
+  footer date), `aria.ts` (labels), `layout.ts` (values a template and a stylesheet must agree on).
+- `site.webmanifest` is a build route (`src/pages/site.webmanifest.ts`), so its colors come from
+  the same constant as the `theme-color` meta tags.
+- Plain `.css` imported by a page is **not** scoped, so `:global()` is invalid there — it reaches
+  the browser as an unknown pseudo-class and silently invalidates the whole rule. It belongs only
+  in an `.astro` `<style>` block.
 
-## CSS Conventions
+## Markdownlint
 
-All design tokens live in `src/styles/tokens.css`. Every color, spacing, and typography value
-should be consumed through these CSS custom properties — never write raw hex values or magic
-numbers directly in component CSS.
-
-The token layers are:
-
-1. Raw palette (`--color-mist-grey`, `--space-4`, etc.)
-2. Semantic roles (`--color-bg-default`, `--color-text-primary`, etc.)
-3. Abstract accent slots (`--color-accent-1` through `--color-accent-4`)
-
-When adding new styles, consume semantic roles or accent slots, not raw palette values.
-
-## Astro Conventions
-
-- Zero client-side JavaScript by default. Do not add `<script>` blocks or framework components
-  without a clear justification.
-- Layout structure is owned by `src/layouts/BaseLayout.astro`. Global HTML (`<html>`, `<head>`,
-  `<body>`) lives there.
-- Navigation and social links are configured in `src/constants/site.ts`.
-- Aria labels for icon links are in `src/constants/aria.ts`.
-
-## Markdownlint Config
-
-Content markdown files (`src/content/`, `src/pages/`) are HTML fragments embedded in Astro
-pages, not standalone documents. The global `.markdownlint.json` suppresses:
-
-- `MD001` — heading increment (content files start with H3, not H1)
-- `MD013` — line length (prose should not be hard-wrapped)
-- `MD033` — inline HTML (legitimate in Astro content)
-- `MD041` — first-line H1 (fragments do not need document-level structure)
-
-Do not suppress additional rules globally. If a new content pattern conflicts with a rule,
-evaluate whether the rule or the pattern should change.
+`.markdownlint.json` suppresses MD001, MD013, MD033, and MD041 because content files are HTML
+fragments embedded in Astro pages, not standalone documents. Do not suppress more globally.
 
 ## Commit Policy
 

@@ -1,5 +1,3 @@
-/* Footer component */
-
 .footer {
   margin-top: var(--space-8);
 }
@@ -13,21 +11,22 @@
 .footer-meta {
   margin-top: var(--space-4);
   font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
+  color: var(--color-text-muted);
 }
 
 .footer-heading {
   margin: 0 0 var(--space-2);
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-semibold);
-  color: var(--color-text-secondary);
+  color: var(--color-text-muted);
   text-transform: uppercase;
+
   letter-spacing: 0.04em;
 }
 
 .footer-contact {
   margin: 0 0 var(--space-4);
   font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
+  color: var(--color-text-muted);
   max-width: var(--max-width-md);
 }
