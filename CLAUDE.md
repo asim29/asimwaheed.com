@@ -65,7 +65,10 @@ component CSS.
 **`src/styles/tokens.css` is generated — never hand-edit it.** It is copied verbatim from
 `BrandGuidelines/css/tokens.css`, itself emitted from OKLCH seeds by `BrandGuidelines/tools/palette`
 with contrast verified. To change a color, edit the seed, regenerate with `--apply`, and re-copy
-the file with its provenance header. It is in `.prettierignore` so re-copying never lands in diff.
+the file with its provenance header. Both formatters that would rewrite it are held off: it is in
+`.prettierignore` and `.stylelintignore`, so re-copying never lands in diff. Because that leaves
+`stylelint --fix` with nothing to do when a commit touches only this file, the lint-staged `*.css`
+entry passes `--allow-empty-input`; without it stylelint exits 1 on `AllFilesIgnoredError`.
 
 Two token layers: primitive ramps (`50`→`950` on one perceptual lightness scale) and semantic
 roles (`--color-text`, `--color-link`, …). **Consume roles, not ramp steps** — only roles carry
