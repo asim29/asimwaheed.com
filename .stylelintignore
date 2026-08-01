@@ -1,0 +1,4 @@
+# generated upstream by BrandGuidelines/tools/palette and copied in verbatim.
+# `--fix` rewriting it would break that copy while its header still claims to be
+# one, so the file is left exactly as the generator emits it.
+src/styles/tokens.css
