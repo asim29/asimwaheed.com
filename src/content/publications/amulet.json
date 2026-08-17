@@ -1,0 +1,10 @@
+{
+  "title": "Amulet: A Python Library for Assessing Interactions Among ML Defenses and Risks",
+  "authors": ["Asim Waheed", "Vasisht Duddu", "Rui Zhang", "Sebastian Szyller"],
+  "venue": "arXiv preprint",
+  "year": 2025,
+  "links": {
+    "arxiv": "https://arxiv.org/abs/2509.12386",
+    "code": "https://github.com/ssg-research/amulet"
+  }
+}

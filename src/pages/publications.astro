@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
+import { SITE } from "../constants/site";
 
 import "./_publications.css";
 
@@ -17,10 +18,15 @@ publications.sort((a, b) => b.data.year - a.data.year);
 
       return (
         <section class="publication">
-          <h3>{data.title}</h3>
+          <h3 class="publication-title">{data.title}</h3>
 
           <p class="publication-meta">
-            {data.authors.join(", ")}
+            {data.authors.map((author, i) => (
+              <>
+                {author === SITE.name ? <strong>{author}</strong> : author}
+                {i < data.authors.length - 1 && ", "}
+              </>
+            ))}
             <br />
             <small>
               {data.venue} · {data.year}

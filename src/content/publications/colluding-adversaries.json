@@ -1,0 +1,10 @@
+{
+  "title": "SoK: Colluding Adversaries in Machine Learning Pipelines",
+  "authors": ["Vasisht Duddu", "Lipeng He", "Asim Waheed", "N. Asokan"],
+  "venue": "USENIX Security Symposium",
+  "year": 2026,
+  "links": {
+    "paper": "https://www.usenix.org/conference/usenixsecurity26/presentation/duddu",
+    "arxiv": "https://arxiv.org/abs/2606.10091"
+  }
+}

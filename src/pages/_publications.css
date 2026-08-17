@@ -2,6 +2,10 @@
   margin-bottom: var(--space-7);
 }
 
+.publication-title {
+  font-size: var(--font-size-xl);
+}
+
 .publication-meta {
   margin-bottom: var(--space-2);
 }
