@@ -1,5 +1,3 @@
-### About me
-
 Hi, I'm **Asim** (/ˈɑːsɪm/).
 I'm pursuing a PhD in Computer Science at the
 [University of Waterloo](https://cs.uwaterloo.ca/),

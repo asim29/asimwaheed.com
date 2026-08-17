@@ -12,11 +12,6 @@ beforeAll(() => {
 
 const htmlvalidate = new HtmlValidate({
   extends: ["html-validate:recommended"],
-  rules: {
-    // Content pages intentionally start at h3 under the masthead; there is
-    // no per-page h1 by design.
-    "heading-level": "off",
-  },
 });
 
 describe.each(PAGES)("$route", ({ file }) => {

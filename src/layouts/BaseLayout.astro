@@ -91,6 +91,14 @@ const ogImageURL = new URL(asimPhoto.src, Astro.site);
       <div class="content">
         <Masthead />
 
+        {
+          /* The masthead name looks like a page title but is a link, so without
+            this every page ships with no h1 at all. It is hidden because no page
+            displays its own title, and it reuses `title` so the outline and the
+            <title> tag can never drift apart. */
+        }
+        <h1 class="sr-only">{title}</h1>
+
         <slot />
 
         <Footer />

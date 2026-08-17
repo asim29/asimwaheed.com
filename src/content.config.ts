@@ -6,6 +6,7 @@ const publications = defineCollection({
   loader: glob({ pattern: "**/*.json", base: "./src/content/publications" }),
   schema: z.object({
     title: z.string(),
+    kind: z.enum(["peer-reviewed", "preprint"]).default("peer-reviewed"),
     authors: z.array(z.string()),
     venue: z.string(),
     year: z.number(),
