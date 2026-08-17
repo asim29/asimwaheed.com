@@ -73,7 +73,7 @@
   max-width: var(--max-width-md);
 }
 
-.work-other h3 {
+.work-other h2 {
   margin-bottom: var(--space-3);
   font-size: var(--font-size-xl);
   color: var(--color-text-muted);

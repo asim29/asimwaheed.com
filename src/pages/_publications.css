@@ -1,3 +1,9 @@
+/* Papers within a group are already --space-7 apart, so a group break needs to
+   clear that to read as a break rather than another paper. */
+.publication-group + .publication-group {
+  margin-top: var(--space-6);
+}
+
 .publication {
   margin-bottom: var(--space-7);
 }
