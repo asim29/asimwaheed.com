@@ -25,38 +25,32 @@ const timelineItems = await Promise.all(
 ---
 
 <BaseLayout title="Work" description="Background and trajectory">
-  {
-    IntroContent && (
-      <section class="work-intro">
-        <IntroContent />
-      </section>
-    )
-  }
+  {IntroContent && (
+    <section class="work-intro">
+      <IntroContent />
+    </section>
+  )}
 
   <section class="timeline">
-    {
-      timelineItems.map(({ data, Content }) => (
-        <div class="timeline-item">
-          <div class="timeline-marker" />
+    {timelineItems.map(({ data, Content }) => (
+      <div class="timeline-item">
+        <div class="timeline-marker" />
 
-          <div class="timeline-content">
-            <div class="timeline-dates">
-              {data.start} – {data.end}
-            </div>
-
-            <Content />
+        <div class="timeline-content">
+          <div class="timeline-dates">
+            {data.start} – {data.end}
           </div>
+
+          <Content />
         </div>
-      ))
-    }
+      </div>
+    ))}
   </section>
 
-  {
-    OtherContent && otherEntry && (
-      <section class="work-other">
-        <h2>{otherEntry.data.title}</h2>
-        <OtherContent />
-      </section>
-    )
-  }
+  {OtherContent && otherEntry && (
+    <section class="work-other">
+      <h2>{otherEntry.data.title}</h2>
+      <OtherContent />
+    </section>
+  )}
 </BaseLayout>
