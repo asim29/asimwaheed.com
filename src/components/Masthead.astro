@@ -66,20 +66,24 @@ const pathname = Astro.url.pathname.replace(/\/$/, "");
 
   <!-- Desktop nav -->
   <nav class="masthead-nav" aria-label="Primary">
-    <a href="/" class={`nav-link ${pathname === "" ? "active" : ""}`}>Home</a>
-    <a href="/work" class={`nav-link ${pathname === "/work" ? "active" : ""}`}
-      >Work</a
-    >
+    <a href="/" class={`nav-link ${pathname === "" ? "active" : ""}`}>
+      Home
+    </a>
+    <a href="/work" class={`nav-link ${pathname === "/work" ? "active" : ""}`}>
+      Work
+    </a>
     <a
       href="/publications"
       class={`nav-link ${pathname === "/publications" ? "active" : ""}`}
-      >Publications</a
     >
+      Publications
+    </a>
     <a
       href="/collaborate"
       class={`nav-link ${pathname === "/collaborate" ? "active" : ""}`}
-      >Collaborate</a
     >
+      Collaborate
+    </a>
   </nav>
 
   <!-- Mobile menu -->
@@ -91,23 +95,27 @@ const pathname = Astro.url.pathname.replace(/\/$/, "");
       </summary>
 
       <nav class="menu-panel" aria-label="Mobile primary">
-        <a href="/" class={`nav-link ${pathname === "" ? "active" : ""}`}
-          >Home</a
-        >
+        <a href="/" class={`nav-link ${pathname === "" ? "active" : ""}`}>
+          Home
+        </a>
         <a
           href="/work"
-          class={`nav-link ${pathname === "/work" ? "active" : ""}`}>Work</a
+          class={`nav-link ${pathname === "/work" ? "active" : ""}`}
         >
+          Work
+        </a>
         <a
           href="/publications"
           class={`nav-link ${pathname === "/publications" ? "active" : ""}`}
-          >Publications</a
         >
+          Publications
+        </a>
         <a
           href="/collaborate"
           class={`nav-link ${pathname === "/collaborate" ? "active" : ""}`}
-          >Collaborate</a
         >
+          Collaborate
+        </a>
         <div class="menu-contact">
           <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
         </div>
