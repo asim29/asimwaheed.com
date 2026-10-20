@@ -34,3 +34,12 @@ allowBuilds:
 # regardless. CI runs frozen, and Dependabot writes its own lockfiles, so this
 # constrains local dependency work rather than incoming pull requests.
 strictPeerDependencies: true
+
+# braces <=3.0.3 (GHSA-vfj7-8cjw-p6xm, stack exhaustion on deeply nested
+# patterns) has no patched release: upstream fix PRs are open but unmerged.
+# Its only path here is stylelint -> micromatch -> braces, a dev-only lint
+# step that expands our own globs, so attacker-controlled patterns never reach
+# it. Remove this entry once a fixed braces is published.
+auditConfig:
+  ignoreGhsas:
+    - GHSA-vfj7-8cjw-p6xm
