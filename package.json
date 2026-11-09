@@ -24,19 +24,19 @@
     "node": ">=24"
   },
   "dependencies": {
-    "@astrojs/markdown-remark": "^7.3.4",
+    "@astrojs/markdown-remark": "^7.3.6",
     "@astrojs/sitemap": "^3.7.4",
-    "astro": "^7.4.2",
+    "astro": "^7.4.7",
     "sharp": "^0.35.5"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
     "@eslint/js": "^10.0.1",
-    "eslint": "^10.13.0",
+    "eslint": "^10.14.0",
     "eslint-plugin-astro": "^3.2.1",
-    "html-validate": "^11.17.0",
+    "html-validate": "^11.19.0",
     "husky": "^9.1.7",
-    "linkedom": "^0.18.14",
+    "linkedom": "^0.18.15",
     "lint-staged": "^17.6.0",
     "markdownlint-cli": "^0.50.0",
     "prettier": "^3.9.10",
@@ -45,8 +45,8 @@
     "stylelint": "^17.16.0",
     "stylelint-config-standard": "^40.0.0",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.72.0",
-    "vitest": "^5.0.5",
+    "typescript-eslint": "^8.72.1",
+    "vitest": "^5.1.0",
     "zod": "^4.6.7"
   },
   "lint-staged": {
